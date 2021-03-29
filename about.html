@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>关于 - 所长导航-很有范的导航站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="copyright" content="webstack_zmki_0.7.19_www.zmki.cn">
+  <link rel="stylesheet" href="static/css/css-Arimo400700400italic.css">
+  <link rel="stylesheet" href="static/css/linecons.css"> 
+  <link rel="stylesheet" href="static/css/font-awesome.min.css">
+  <link rel="stylesheet" href="static/css/bootstrap.css">
+  <link rel="stylesheet" href="static/css/xenon-core.css">
+  <link rel="stylesheet" href="static/css/xenon-components.css">
+  <link rel="stylesheet" href="static/css/xenon-skins.css">
+  <link rel="stylesheet" href="static/css/nav.css">
+  <link rel="stylesheet" href="static/css/font_1627571_5r5ttgth8yq.css"> 
+  <script src="static/js/font_1627571_5r5ttgth8yq.js"></script>
+  <script src="static/js/jquery.min.js"></script>
+  
+    
+  <meta name="description" content="Typecho导航主题WebStack_钻芒二开版介绍Typecho导航主题WebStack_钻芒二开版钻芒博客: [www.zmki.cn]Demo: [Tool.zmki.cn]安装教程请将...">
+<meta name="generator" content="Typecho 1.1/17.10.30">
+<meta name="template" content="WebStack">
+<link rel="pingback" href="https://tool.zmki.cn/index.php/action/xmlrpc">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://tool.zmki.cn/index.php/action/xmlrpc?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://tool.zmki.cn/index.php/action/xmlrpc?wlw">
+
+
+
+<script type="text/javascript">
+(function () {
+    window.TypechoComment = {
+        dom : function (id) {
+            return document.getElementById(id);
+        },
+    
+        create : function (tag, attr) {
+            var el = document.createElement(tag);
+        
+            for (var key in attr) {
+                el.setAttribute(key, attr[key]);
+            }
+        
+            return el;
+        },
+
+        reply : function (cid, coid) {
+            var comment = this.dom(cid), parent = comment.parentNode,
+                response = this.dom('respond-page-204'), input = this.dom('comment-parent'),
+                form = 'form' == response.tagName ? response : response.getElementsByTagName('form')[0],
+                textarea = response.getElementsByTagName('textarea')[0];
+
+            if (null == input) {
+                input = this.create('input', {
+                    'type' : 'hidden',
+                    'name' : 'parent',
+                    'id'   : 'comment-parent'
+                });
+
+                form.appendChild(input);
+            }
+
+            input.setAttribute('value', coid);
+
+            if (null == this.dom('comment-form-place-holder')) {
+                var holder = this.create('div', {
+                    'id' : 'comment-form-place-holder'
+                });
+
+                response.parentNode.insertBefore(holder, response);
+            }
+
+            comment.appendChild(response);
+            this.dom('cancel-comment-reply-link').style.display = '';
+
+            if (null != textarea && 'text' == textarea.name) {
+                textarea.focus();
+            }
+
+            return false;
+        },
+
+        cancelReply : function () {
+            var response = this.dom('respond-page-204'),
+            holder = this.dom('comment-form-place-holder'), input = this.dom('comment-parent');
+
+            if (null != input) {
+                input.parentNode.removeChild(input);
+            }
+
+            if (null == holder) {
+                return true;
+            }
+
+            this.dom('cancel-comment-reply-link').style.display = 'none';
+            holder.parentNode.insertBefore(response, holder);
+            return false;
+        }
+    };
+})();
+</script>
+<script type="text/javascript">
+(function () {
+    var event = document.addEventListener ? {
+        add: 'addEventListener',
+        triggers: ['scroll', 'mousemove', 'keyup', 'touchstart'],
+        load: 'DOMContentLoaded'
+    } : {
+        add: 'attachEvent',
+        triggers: ['onfocus', 'onmousemove', 'onkeyup', 'ontouchstart'],
+        load: 'onload'
+    }, added = false;
+
+    document[event.add](event.load, function () {
+        var r = document.getElementById('respond-page-204'),
+            input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = '_';
+        input.value = (function () {
+    var _odM = //'xBy'
+'93'+//'n'
+'n'+//'nUR'
+'1c9'+'284'//'MnW'
++''///*'D'*/'D'
++//'a'
+'d4'+//'A'
+'fc'+//'wDK'
+'a59'+//'qJo'
+'qJo'+'88'//'lL'
++'c'//'xc'
++'GQo'//'GQo'
++'7'//'p'
++//'o'
+'5'+//'L'
+'f'+//'j'
+'a6a'+'ci'//'ci'
++''///*'XA'*/'XA'
++'7'//'a'
++//'B'
+'1'+'e'//'4'
++/* '0'//'0' */''+/* 'EPV'//'EPV' */''+'ee'//'dwb'
++'83'//'GS'
++/* 'j'//'j' */''+'4'//'M'
+, _81pK4 = [[2,3],[15,18],[18,21],[24,26]];
+    
+    for (var i = 0; i < _81pK4.length; i ++) {
+        _odM = _odM.substring(0, _81pK4[i][0]) + _odM.substring(_81pK4[i][1]);
+    }
+
+    return _odM;
+})();
+
+        if (null != r) {
+            var forms = r.getElementsByTagName('form');
+            if (forms.length > 0) {
+                function append() {
+                    if (!added) {
+                        forms[0].appendChild(input);
+                        added = true;
+                    }
+                }
+            
+                for (var i = 0; i < event.triggers.length; i ++) {
+                    var trigger = event.triggers[i];
+                    document[event.add](trigger, append);
+                    window[event.add](trigger, append);
+                }
+            }
+        }
+    });
+})();
+</script> <!--* @version 4.0 _zmki0.7.19 -->
+</head> 
+<body class="page-body ">
+    <!-- skin-white -->
+<div class="page-container">         <div class="sidebar-menu toggle-others fixed">
+            <div class="sidebar-menu-inner">
+                <header class="logo-env">
+                    <!-- logo -->
+                    <div class="logo">
+                        <a href="index.html" class="logo-expanded">
+                            <img class="logo_size" src="static/picture/20190827-5d65409f3fbff.png" width="100%" alt="">
+                        </a>
+                    </div>
+                    <div class="mobile-menu-toggle visible-xs">
+                        <a href="#" data-toggle="mobile-menu">
+                            <i class="fa-bars"></i>
+                        </a>
+                    </div>
+                </header>
+                <ul id="main-menu" class="main-menu">
+                                                                                                                                                             <li>
+                                     <a>
+                                        <i class="fa fa-heart"></i>
+                                        <span class="title">zmki</span>
+                                     </a>
+                                     <ul>
+                                                                          <li>
+                              <a href="index.html#常用推荐" class="smooth">常用推荐</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#憨憨备用" class="smooth">憨憨备用</a>
+                          </li>
+                                                            </ul>
+                                 </li>
+                                                                                                                                                                                                                                                                                           <li>
+                                     <a>
+                                        <i class="fa fa-telegram"></i>
+                                        <span class="title">博客论坛</span>
+                                     </a>
+                                     <ul>
+                                                                          <li>
+                              <a href="index.html#SEO" class="smooth">SEO</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#前端框架" class="smooth">前端框架</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#技术社区" class="smooth">技术社区</a>
+                          </li>
+                                                            </ul>
+                                 </li>
+                                                                                                                                                                                                                                                                                                                                         <li>
+                                     <a>
+                                        <i class="fa fa-magic"></i>
+                                        <span class="title">在线工具</span>
+                                     </a>
+                                     <ul>
+                                                                          <li>
+                              <a href="index.html#编辑器" class="smooth">编辑器</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#小工具" class="smooth">小工具</a>
+                          </li>
+                                                            </ul>
+                                 </li>
+                                                                                                                                                                                                                                                                                           <li>
+                                     <a>
+                                        <i class="fa fa-eyedropper"></i>
+                                        <span class="title">素材资源</span>
+                                     </a>
+                                     <ul>
+                                                                          <li>
+                              <a href="index.html#图标库" class="smooth">图标库</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#设计资源" class="smooth">设计资源</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#网页配色" class="smooth">网页配色</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#UX团队" class="smooth">UX团队</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#UX研究所" class="smooth">UX研究所</a>
+                          </li>
+                                                            </ul>
+                                 </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                     <li>
+                                     <a>
+                                        <i class="fa fa-desktop"></i>
+                                        <span class="title">运营平台</span>
+                                     </a>
+                                     <ul>
+                                                                          <li>
+                              <a href="index.html#服务器" class="smooth">服务器</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#自媒体" class="smooth">自媒体</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#域名交易" class="smooth">域名交易</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#其他平台" class="smooth">其他平台</a>
+                          </li>
+                                                            </ul>
+                                 </li>
+                                                                                                                                                                                                                                                                                                                                                                                       <li>
+                                     <a href="index.html#参考文档" class="smooth">
+                                        <i class="fa fa-book"></i>
+                                        <span class="title">参考文档</span>
+                                     </a>
+                                 </li>
+                                                                                                                                                                                               <li>
+                                     <a>
+                                        <i class="fa fa-hand-peace-o"></i>
+                                        <span class="title">学习充电</span>
+                                     </a>
+                                     <ul>
+                                                                          <li>
+                              <a href="index.html#技术编程" class="smooth">技术编程</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#网站运维" class="smooth">网站运维</a>
+                          </li>
+                                                            </ul>
+                                 </li>
+                                                                                                                                                                                                                                                                                           <li>
+                                     <a>
+                                        <i class="fa fa-envira"></i>
+                                        <span class="title">API</span>
+                                     </a>
+                                     <ul>
+                                                                          <li>
+                              <a href="index.html#平台" class="smooth">平台</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#短网址" class="smooth">短网址</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#ip签名天气" class="smooth">ip签名天气</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#一言段子诗句" class="smooth">一言段子诗句</a>
+                          </li>
+                                                            </ul>
+                                 </li>
+                                                                                                                                                                                                                                                                                                                                                                                       <li>
+                                     <a>
+                                        <i class="fa fa-thumbs-up"></i>
+                                        <span class="title">优质站点收录</span>
+                                     </a>
+                                     <ul>
+                                                                          <li>
+                              <a href="index.html#值得一看" class="smooth">值得一看</a>
+                          </li>
+                                                                          <li>
+                              <a href="index.html#资源站" class="smooth">资源站</a>
+                          </li>
+                                                            </ul>
+                                 </li>
+                                                                                                                                                                                            <li class="submit-tag">
+                        <a href="">
+                            <i class="linecons-heart"></i>
+                            <span class="smooth">关于本站</span>
+                            <span class="label label-Primary pull-right hidden-collapsed">♥</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>         <div class="main-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <!-- 关于网站 -->
+                        <h4 class="text-gray">关于网站</h4>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!--<blockquote>-->
+                                        <h1>Typecho导航主题WebStack_钻芒二开版</h1><p><br></p><h2>介绍</h2><p>Typecho导航主题WebStack_钻芒二开版</p><ul><li>钻芒博客: [www.zmki.cn]</li><li>Demo: [Tool.zmki.cn]</li></ul><h2>安装教程</h2><ol><li>请将WebStack_zmki_X.XX.XX.zip解压到typecho主题目录 /usr/themes 下使用</li><li>如果启用主题提示 主题风格不存在，请将主题文件夹名称改为WebStack</li></ol><h2>版本说明</h2><ul><li><strong>V0.7.19更新 2020年7月19日</strong></li><li>修复了心知天气调用API，目前免费版20次调用/分钟，有需求可自行购买更换 [教程]</li><li>调整了Logo在手机端和电脑端因图片尺寸显示过大的问题</li><li>新增手机端每行显示导航数量控制，可选: 单栏  双栏  三栏</li><li>新增电脑端每行显示导航数量控制，可选: 单栏  双栏  三栏  四栏  五栏  六栏  七栏  八栏</li><li>美化后台页面布局引入图标并新增备份与恢复功能</li><li>去除了后台之前逻辑性混乱的自定义站点名称和后缀功能，现直接去设置调整即可</li><li><strong>V0.6.1更新 2020年6月1日</strong></li><li>调整顶部搜索栏，支持多平台快捷搜索及热词功能。搜索功能鸡肋-1</li><li>底部新增友情链接模块，（由于typecho原因。需配合配套插件使用，插件下载入口在主题设置内）</li><li>提示: 如果启用友情链接需开启配套插件。否则会报错。</li><li>友情链接管理在typecho后台-管理-友情链接。</li><li><strong>V0.4.9更新 2020年4月9日</strong></li><li>新增顶部彩色4个小模块，后台可设置名称链接和图标</li><li>微调主题整体风格，更偏向于扁平化</li><li>新增后台可自定义版权，加这个是为了让某些人别删除我们的链接啦！</li><li>新增后台添加统计代码</li><li>调整顶部搜索模板显示位置</li><li>手机端显示小bug修复</li><li><strong>V0.2.29更新 2020年2月29日</strong></li><li>修复之前的包缺少排序文件。已放在包内并附有文档</li><li>之前版本文件夹结构问题导致安装出现的问题在此说声抱歉，可能影响了很多不熟悉Typecho人的使用。已修复。按包内文档</li><li>的解压目录上传解压即可</li><li>发现BUG等问题欢迎大家加群反馈。 737656800</li><li><p><strong>V0.2.23更新 2020年2月23日</strong></p><ul><li>修复前端功能开关导致的显示问题</li></ul></li><li><p><strong>V0.2.11 第一个版本 2020年2月11日</strong></p><ul><li>由钻芒博客二次,内容包括新增顶栏和优化底栏及悬浮窗等N项。</li><li>适配全新暗黑模式，支持cooke保存。</li><li>设置参数已整合至后台，无需手动修改HTML。</li><li>基于SEOGO.ME运营狗2019.12.01版本 此版本于2020年2月9日23:07:54二开初次打包</li></ul></li></ul><h2>主题qq交流群</h2><p><img src="static/picture/20200214-a874495080831.png" alt="主题交流QQ群：737656800" title="主题交流QQ群：737656800"></p><p><br><br></p>                                    
+                                </div>
+                                 <div id="comments">
+        	<h3>已有 4 条评论</h3>
+    
+    <ol class="comment-list"><li itemscope="" itemtype="http://schema.org/UserComments" id="comment-3" class="comment-body comment-parent comment-odd">
+    <div class="comment-author" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="image"><img class="avatar" src="https://secure.gravatar.com/avatar/c688038f1a288e4ad23632df4bc3bf18?s=32&r=G&d=" alt="hiahi" width="32" height="32"></span>
+        <cite class="fn" itemprop="name"><a href="javascript:;" rel="external nofollow">hiahi</a></cite>
+    </div>
+    <div class="comment-meta">
+        <a href="#comment-3"><time itemprop="commentTime" datetime="2020-08-23T09:41:49+08:00">August 23rd, 2020 at 09:41 am</time></a>
+            </div>
+    <div class="comment-content" itemprop="commentText">
+    <p>1</p>    </div>
+    <div class="comment-reply">
+        <a href="about-3.html#respond-page-204" rel="nofollow" onclick="return TypechoComment.reply('comment-3', 3);">回复</a>    </div>
+    </li>
+<li itemscope="" itemtype="http://schema.org/UserComments" id="comment-4" class="comment-body comment-parent comment-even">
+    <div class="comment-author" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="image"><img class="avatar" src="https://secure.gravatar.com/avatar/6cc7924c2bfad7ee3f71d11f63d30383?s=32&r=G&d=" alt="1" width="32" height="32"></span>
+        <cite class="fn" itemprop="name"><a href="javascript:;" rel="external nofollow">1</a></cite>
+    </div>
+    <div class="comment-meta">
+        <a href="#comment-4"><time itemprop="commentTime" datetime="2020-10-11T21:59:51+08:00">October 11th, 2020 at 09:59 pm</time></a>
+            </div>
+    <div class="comment-content" itemprop="commentText">
+    <p>啊</p>    </div>
+    <div class="comment-reply">
+        <a href="about-4.html#respond-page-204" rel="nofollow" onclick="return TypechoComment.reply('comment-4', 4);">回复</a>    </div>
+    </li>
+<li itemscope="" itemtype="http://schema.org/UserComments" id="comment-5" class="comment-body comment-parent comment-odd">
+    <div class="comment-author" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="image"><img class="avatar" src="https://secure.gravatar.com/avatar/b7975e4ae10fc2e5cc467ed87e620c8a?s=32&r=G&d=" alt="苡琦家" width="32" height="32"></span>
+        <cite class="fn" itemprop="name"><a href="javascript:;" rel="external nofollow">苡琦家</a></cite>
+    </div>
+    <div class="comment-meta">
+        <a href="#comment-5"><time itemprop="commentTime" datetime="2021-01-18T17:13:34+08:00">January 18th, 2021 at 05:13 pm</time></a>
+            </div>
+    <div class="comment-content" itemprop="commentText">
+    <p>为啥我应用主题后乱码</p>    </div>
+    <div class="comment-reply">
+        <a href="about-5.html#respond-page-204" rel="nofollow" onclick="return TypechoComment.reply('comment-5', 5);">回复</a>    </div>
+    </li>
+<li itemscope="" itemtype="http://schema.org/UserComments" id="comment-6" class="comment-body comment-parent comment-even">
+    <div class="comment-author" itemprop="creator" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="image"><img class="avatar" src="https://secure.gravatar.com/avatar/39e8f2115ac8273c74441f247239ae45?s=32&r=G&d=" alt="好使么" width="32" height="32"></span>
+        <cite class="fn" itemprop="name"><a href="javascript:;" rel="external nofollow">好使么</a></cite>
+    </div>
+    <div class="comment-meta">
+        <a href="#comment-6"><time itemprop="commentTime" datetime="2021-02-26T22:38:00+08:00">February 26th, 2021 at 10:38 pm</time></a>
+            </div>
+    <div class="comment-content" itemprop="commentText">
+    <p>aaaaaaaaaaaaaaaaaaaaaa</p>    </div>
+    <div class="comment-reply">
+        <a href="about-6.html#respond-page-204" rel="nofollow" onclick="return TypechoComment.reply('comment-6', 6);">回复</a>    </div>
+    </li>
+</ol>
+        
+    
+        <div id="respond-page-204" class="respond">
+        <div class="cancel-comment-reply">
+        <a id="cancel-comment-reply-link" href="#respond-page-204" rel="nofollow" style="display:none" onclick="return TypechoComment.cancelReply();">取消回复</a>        </div>
+    
+    	<h3 id="response">添加新评论</h3>
+    	<form method="post" action="https://tool.zmki.cn/index.php/about.html/comment" id="comment-form" role="form">
+                        <ul class="compost">
+    		<li>
+    			<input type="text" name="author" id="author" class="text" placeholder="昵称（必填）" value="" required="">
+    		</li>
+    		<li>
+    			<input type="email" name="mail" id="mail" class="text" placeholder="邮箱（必填）" value="" required="">
+    		</li>
+    		<li>
+    			<input type="url" name="url" id="url" class="text" placeholder="网址（选填）" value="">
+    		</li>
+            </ul>
+                		<div>
+                <textarea rows="8" cols="50" name="text" id="textarea" placeholder="说点什么吧" class="textarea" required=""></textarea>
+            </div>
+    		<p>
+                <button type="submit" class="submit">提交评论</button>
+            </p>
+    	</form>
+    </div>
+    </div>
+<style>#comments{padding-top:15px}.comment-list,.comment-list ol{list-style:none;margin:0;padding:0}.comment-list li{padding:14px;margin-top:10px;border:1px solid #EEE}.comment-list li.comment-level-odd{background:#f6f6f3}.comment-list li.comment-level-even{background:#FFF}.comment-list li.comment-by-author{background:#fff9e8}.comment-list li .comment-reply{text-align:right;font-size:.92857em}.comment-meta a{color:#999;font-size:.92857em}.comment-author{display:block;margin-bottom:3px;color:#444}.comment-author .avatar{float:left;margin-right:10px}.comment-author cite{font-weight:bold;font-style:normal}.comment-list .respond{margin-top:15px;border-top:1px solid #EEE}.respond .cancel-comment-reply{float:right;margin-top:15px;font-size:.92857em}#comment-form label{display:block;margin-bottom:.5em;font-weight:bold}#comment-form .required:after{content:" *";color:#C00}.respond ul{margin:0}.respond .compost{overflow:hidden;padding:10px 0 0}.respond .compost li input{width:160px;height:24px;padding-left:4px;border:1px solid #ddd;color:#666}.respond .compost li{float:left;margin-right:6px;margin-bottom:10px;list-style-type:none}.respond .textarea{width:100%;border:1px solid #ddd}.comment-content{margin:10px 0 0 45px}</style>                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- Main Footer -->
+ <footer class="main-footer sticky footer-type-1">
+                <div class="footer-inner">
+                     
+                    <div class="footer-text">
+                    <!--zmki优化 zmki.cn --基于WebStac  Modify BY Seogo 2020年5月18日19:41:46-->
+                    <!--今日诗词-->
+                    <span id="jinrishici-sentence">正在加载今日诗词....</span>
+					<script src="static/js/jinrishici.js" ></script> 
+					</div> 
+				 
+				    <!--友情链接-->
+				    				    <div class="links_zmki zmki_footer_mar">
+					<span>友情链接:</span> 
+					<li><a href="index1.html" title="" target="_blank">钻芒博客</a></li>
+<li><a href="javascript:;" title="" target="_blank">漳州购物网</a></li>
+<li><a href="javascript:;" title="" target="_blank">大巴包车网</a></li>
+<li><a href="javascript:;" title="" target="_blank">帆布水池</a></li>
+<li><a href="javascript:;" title="" target="_blank">网赚博客</a></li>
+<li><a href="javascript:;" title="" target="_blank">本地化服务</a></li>
+<li><a href="javascript:;" title="" target="_blank">隔热涂料</a></li>
+<li><a href="javascript:;" title="" target="_blank">站长资源</a></li>
+  
+					</div>
+					<br>
+									 
+				    <div class="zmki_footer_mar">
+					<!--底部修改开始-->
+                    &copy; 2021&nbsp;Theme: 
+                    <a href="index1.html" target="_blank"><strong> ZMKI</strong></a>&nbsp;   Design BY <a href="javascript:;" target="_blank"><strong>Webstack</strong></a>&nbsp; Modify BY <a href="javascript:;" target="_blank"><strong>Seogo</strong></a>
+                    &nbsp;&nbsp;版权所有:<b>ZMKI</b>
+					&nbsp;&nbsp;&nbsp;<a href="javascript:;" target="_blank"><strong> 陕ICP备19019314号 </strong></a>
+                    </div>
+                     
+                    <!--锚点-->
+                    <div class="go-up">
+                        <a href="#" rel="go-top">
+                            <i class="fa-angle-up"></i>
+                        </a>
+                    </div> 
+                    
+                    <!--站点运行时间开始--> 
+                    <div class="zmki_footer_mar">
+					<script>
+					(function(){
+					    var bp = document.createElement('script');
+					    var curProtocol = window.location.protocol.split(':')[0];
+					    if (curProtocol === 'https') {
+					        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+					    }
+					    else {
+					        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+					    }
+					    var s = document.getElementsByTagName("script")[0];
+					    s.parentNode.insertBefore(bp, s);
+					})();
+					  
+						</script>				 
+					                  站点已稳定运行：<span id="span_dt_dt" style="color: #2F889A;"></span> 
+					                  <script language="javascript">function show_date_time(){
+					                    window.setTimeout("show_date_time()", 1000);
+					                    BirthDay=new Date("1/1/2019 11:13:14 ");
+					                    today=new Date();
+					                    timeold=(today.getTime()-BirthDay.getTime());
+					                    sectimeold=timeold/1000
+					                    secondsold=Math.floor(sectimeold);
+					                    msPerDay=24*60*60*1000
+					                    e_daysold=timeold/msPerDay
+					                    daysold=Math.floor(e_daysold);
+					                    e_hrsold=(e_daysold-daysold)*24;
+					                    hrsold=Math.floor(e_hrsold);
+					                    e_minsold=(e_hrsold-hrsold)*60;
+					                    minsold=Math.floor((e_hrsold-hrsold)*60);
+					                    seconds=Math.floor((e_minsold-minsold)*60);
+					                    span_dt_dt.innerHTML='<font style=color:#C40000>'+daysold+'</font> 天 <font style=color:#C40000>'+hrsold+'</font> 时 <font style=color:#C40000>'+minsold+'</font> 分 <font style=color:#C40000>'+seconds+'</font> 秒';
+					                    }show_date_time();</script> 
+					                      
+                    <!--站点运行时间结束-->
+                    </div>
+                </div>
+            </footer>
+        </div>
+	</div>
+  
+    <script src="static/js/index.min1.js"></script>
+    <script src="static/js/zui1.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/TweenMax.min.js"></script>
+    <script src="static/js/resizeable.js"></script>
+    <script src="static/js/joinable.js"></script>
+    <script src="static/js/xenon-api.js"></script>
+    <script src="static/js/xenon-toggles.js"></script>
+    <script src="static/js/xenon-custom.js"></script>
+    <script type="text/javascript">
+	 <!--//夜间模式-->    
+      
+(function(){
+    if(document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === ''){
+        if(new Date().getHours() > 22 || new Date().getHours() < 6){
+            document.body.classList.add('night');
+            document.cookie = "night=1;path=/";
+            console.log('夜间模式开启');
+        }else{
+            document.body.classList.remove('night');
+            document.cookie = "night=0;path=/";
+            console.log('夜间模式关闭');
+        }
+    }else{
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+        if(night == '0'){
+            document.body.classList.remove('night');
+        }else if(night == '1'){
+            document.body.classList.add('night');
+        }
+    }
+})();
+//夜间模式切换
+function switchNightMode(){
+    var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+    if(night == '0'){
+        document.body.classList.add('night');
+        document.cookie = "night=1;path=/"
+        console.log(' ');
+    }else{
+        document.body.classList.remove('night');
+        document.cookie = "night=0;path=/"
+        console.log(' ');
+    }
+}
+ 
+//全屏切换
+//控制全屏
+function enterfullscreen() { //进入全屏
+  $("#fullscreen").html(" ");
+  var docElm = document.documentElement;
+  //W3C
+  if(docElm.requestFullscreen) {
+    docElm.requestFullscreen();
+  }
+  //FireFox
+  else if(docElm.mozRequestFullScreen) {
+    docElm.mozRequestFullScreen();
+  }
+  //Chrome等
+  else if(docElm.webkitRequestFullScreen) {
+    docElm.webkitRequestFullScreen();
+  }
+  //IE11
+  else if(elem.msRequestFullscreen) {
+    elem.msRequestFullscreen();
+  }
+}
+function exitfullscreen() { //退出全屏
+  $("#fullscreen").html(" ");
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitCancelFullScreen) {
+    document.webkitCancelFullScreen();
+  } else if(document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
+ 
+var a = 0;
+$('#fullscreen').on('click', function() {
+  a++;
+  a % 2 == 1 ? enterfullscreen() : exitfullscreen();
+})
+</script>
+<!--统计代码-->
+ <script>
+// var _hmt = _hmt || [];
+// (function() {
+//   var hm = document.createElement("script");
+//   hm.src = "https://hm.baidu.com/hm.js?ce24fad4121e4d296c3f05d016ae4c64";
+//   var s = document.getElementsByTagName("script")[0]; 
+//   s.parentNode.insertBefore(hm, s);
+// })();
+ </script>
+
+</body>
+</html>   
