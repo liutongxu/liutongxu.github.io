@@ -330,17 +330,47 @@
                                 </ul>
                                 <div class="rounded-circle weather">
                                     <div id="he-plugin-simple" style="display: contents;"></div>
-                                    <script>WIDGET = { CONFIG: { "modules": "12034", "background": 5, "tmpColor": "888", "tmpSize": 14, "cityColor": "888", "citySize": 14, "aqiSize": 14, "weatherIconSize": 24, "alertIconSize": 18, "padding": "10px 10px 10px 10px", "shadow": "1", "language": "auto", "borderRadius": 5, "fixed": "false", "vertical": "middle", "horizontal": "left", "key": "a922adf8928b4ac1ae7a31ae7375e191" } }</script>
-                                    <script
-                                        src="//widget.heweather.net/simple/static/js/he-simple-common.js?v=1.1"></script>
+                                    <script>WIDGET = {
+                                            CONFIG: {
+                                                "modules": "12034",
+                                                "background": 5,
+                                                "tmpColor": "E4C600",
+                                                "tmpSize": 14,
+                                                "cityColor": "E4C600",
+                                                "citySize": 14,
+                                                "aqiColor": "#E4C600",
+                                                "aqiSize": 14,
+                                                "weatherIconSize": 24,
+                                                "alertIconSize": 18,
+                                                "padding": "10px 10px 10px 10px",
+                                                "shadow": "1",
+                                                "language": "auto",
+                                                "borderRadius": 5,
+                                                "fixed": "false",
+                                                "vertical": "middle",
+                                                "horizontal": "left",
+                                                "key": "e05c4ce44b7e43c6a9303e68cc42a48c"
+                                            }
+                                        }
+                                    </script>
+                                    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
                                 </div>
                             </div>
 
                             <ul class="nav navbar-menu text-xs order-1 order-md-2">
                                 <!-- 一言 -->
                                 <li class="nav-item mr-3 mr-lg-0 d-none d-lg-block">
-                                    <script type="text/javascript" src="https://api.zmki.cn/dujitang/index.php/?encode=js&charset=utf-8"></script>
-                                    <div id="binduyan"><script>dujitang()</script></div>
+                                    <script>
+                                        fetch('https://v1.hitokoto.cn')
+                                          .then(response => response.json())
+                                          .then(data => {
+                                            const hitokoto = document.getElementById('hitokoto_text')
+                                            hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+                                            hitokoto.innerText = data.hitokoto
+                                          })
+                                          .catch(console.error)
+                                    </script>                           
+                                    <div id="hitokoto"><a href="#" target="_blank" id="hitokoto_text">我爱你，洛千婷</a></div>
                                 </li>
                                 <!-- 一言 end -->
                                 <li class="nav-search ml-3 ml-md-4">
@@ -1615,7 +1645,7 @@
                     <a href="javascript:" id="go-to-up" class="btn rounded-circle go-up m-1" rel="go-top">
                         <i class="iconfont icon-to-up"></i>
                     </a>
-                    <!-- 天气  -->
+                    <!-- 右下角搜索  -->
                     <a href="javascript:" data-toggle="modal" data-target="#search-modal" class="btn rounded-circle m-1"
                         rel="search" one-link-mark="yes">
                         <i class="iconfont icon-search"></i>
@@ -1623,8 +1653,9 @@
                     <a href="http://sighttp.qq.com/authd?IDKEY=7a6ef4c847ab2e9643c7b9e6fad646a17e3198a37984251d" class="btn rounded-circle kefu m-1" target="_blank" data-toggle="tooltip" data-placement="left" title="联系所长">
                         <i class="mode-ico iconfont icon-qq"></i>
                     </a>
-                    <!-- 天气 end -->
-                    <a href="javascript:" id="switch-mode" class="btn rounded-circle switch-dark-mode m-1"
+                    <!-- 右下角搜索 end -->
+                    
+                    <a href="javascript:" onclick="window.location.href='javascript:switchNightMode()'" class="btn rounded-circle switch-dark-mode m-1" id="yejian"
                         data-toggle="tooltip" data-placement="left" title="夜间模式">
                         <i class="mode-ico iconfont icon-light"></i>
                     </a>
@@ -1895,6 +1926,62 @@ var theme = {"ajaxurl":"https:\/\/nav.iowen.cn\/wp-admin\/admin-ajax.php","addic
     });
     </script>
     <!-- 自定义代码 -->
+
+
+
+<script>
+    //夜间模式
+    (function(){
+    if(document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === ''){
+        if(new Date().getHours() > 22 || new Date().getHours() < 6){
+            document.body.classList.remove('io-black-mode');
+            document.body.classList.add('io-grey-mode');
+            document.cookie = "night=1;path=/";
+            console.log('夜间模式开启');
+        }else{
+            document.body.classList.remove('night');
+            document.cookie = "night=0;path=/";
+            console.log('夜间模式关闭');
+        }
+    }else{
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+        if(night == '0'){
+            document.body.classList.remove('night');
+        }else if(night == '1'){
+            document.body.classList.add('night');
+        }
+    }
+})();
+//夜间模式切换
+function switchNightMode(){
+    var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+    if(night == '0'){
+        document.body.classList.remove('io-grey-mode');
+        document.body.classList.add('io-black-mode');
+        document.cookie = "night=1;path=/"
+        console.log(' ');
+        $(".switch-dark-mode").attr("data-original-title","日间模式");
+        $(".mode-ico").removeClass("icon-night");
+        $(".mode-ico").addClass("icon-light");
+    }else{
+        document.body.classList.remove('io-black-mode');
+        document.body.classList.add('io-grey-mode');
+        document.cookie = "night=0;path=/"
+        console.log(' ');
+        $(".switch-dark-mode").attr("data-original-title","夜间模式");
+        $(".mode-ico").removeClass("icon-light");
+        $(".mode-ico").addClass("icon-night");
+    }
+}
+
+</script>
+
+
+
+
+
+
+
     <!-- end 自定义代码 -->
 </body>
 
