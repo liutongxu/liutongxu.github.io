@@ -1,0 +1,12 @@
+
+
+@font-face {
+  font-family: "fzzj-mmxjjw";
+  src: url("https://api.iowen.cn/f/fonts/fzzj-mmxjjw.woff2") format("woff2"),
+       url("https://api.iowen.cn/f/fonts/fzzj-mmxjjw.woff") format("woff"),
+       url("https://api.iowen.cn/f/fonts/fzzj-mmxjjw.ttf") format("truetype"),
+       url("https://api.iowen.cn/f/fonts/fzzj-mmxjjw.eot") format("embedded-opentype"),
+       url("https://api.iowen.cn/f/fonts/fzzj-mmxjjw.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
