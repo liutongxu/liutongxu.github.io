@@ -1,5 +1,5 @@
 # 所长导航
-# liutongxu.github.io
+# https://liutongxu.github.io/
 
 # 使用说明
 
