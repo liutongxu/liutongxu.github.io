@@ -86,7 +86,7 @@ a>i.sidebar-more{transform:scale(.8)}
 .mini-sidebar ul:first-child > li > ul{display:none}
 .sidebar-nav .top-menu{display:none}
 .sidebar-nav .top-menu .sub-menu{background-color:rgba(136,136,136,.05)}
-.sidebar-nav .top-menu .menu-item-has-children>a::after{content:'\e612';font-family:"iconfont";position:absolute;right:24px;-webkit-transform:scale(.6);transform:rotate(0deg) scale(.6);transition:transform .2s}
+.sidebar-nav .top-menu .menu-item-has-children>a::after{content:'\e616';font-family:"iconfont";position:absolute;right:24px;-webkit-transform:scale(.6);transform:rotate(0deg) scale(.6);transition:transform .2s}
 .sidebar-nav .top-menu>ul i{display:none}
 .sidebar-nav.show .top-menu{display:inherit}
 /*--------------------------------------------------------------
@@ -114,7 +114,7 @@ a>i.sidebar-more{transform:scale(.8)}
 .navbar-collapse li>ul{-webkit-transform:translateY(15px);transform:translateY(15px)}
 .navbar-collapse ul li ul{position:absolute;min-width:90px;opacity:0;overflow:hidden;visibility:hidden;background:#fff;border-radius:4px;box-shadow:0 5px 20px 0px rgba(0,0,0,.15);transition:.3s}
 .navbar-collapse ul li.focus>ul,.navbar-collapse ul li:hover>ul{opacity:1;z-index:1;overflow:visible;visibility:visible;-webkit-transform:translateY(0);transform:translateY(0)}
-.navbar-collapse ul li.menu-item-has-children:after{content:'\e612';font-family:"iconfont";position:absolute;top:14px;right:-2px;font-size:12px;-webkit-transform:scale(.6);transform:rotate(0deg) scale(.6);transition:transform .2s}
+.navbar-collapse ul li.menu-item-has-children:after{content:'\e616';font-family:"iconfont";position:absolute;top:14px;right:-2px;font-size:12px;-webkit-transform:scale(.6);transform:rotate(0deg) scale(.6);transition:transform .2s}
 .navbar-collapse ul li.menu-item-has-children:hover:after{transform:rotate(45deg) scale(.6)}
 .navbar .navbar-nav li>a{font-size:14px;padding:10px 15px;display:block;transition:color .2s}
 .navbar .navbar-nav i{margin-right:2px!important}
@@ -733,7 +733,7 @@ input[type="radio"] + label,input[type="checkbox"] + label{font-weight:400}
 .comment-reply-link{font-weight:800;position:relative}
 .btn-home{color:#fff;background:#f1404b;padding:10px 30px;transition:.3s}
 .btn-home:hover{color:#fff;background:#333}
-.iconfont{display:inline-block;font-size:inherit;font-variant:normal;text-rendering:auto;line-height:1}
+.iconfont{display:inline-block;font-size:inherit;font-variant:normal;text-rendering:auto;line-height:0}
 .icon-lg{font-size:1.33333em;line-height:.75em;vertical-align:-.0667em}
 .icon-2x{font-size:2em}
 .icon-3x{font-size:3em}
