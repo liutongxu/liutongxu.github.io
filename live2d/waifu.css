@@ -6,7 +6,7 @@
 	cursor: pointer;
 	font-size: 12px;
 	right: 60px;
-	margin-right: -100px;
+	margin-left: -100px;
 	padding: 5px 2px 5px 5px;
 	position: fixed;
 	transition: margin-left 1s;
