@@ -15,11 +15,11 @@
 }
 
 #waifu-toggle.waifu-toggle-active {
-	margin-right: -50px;
+	margin-left: -50px;
 }
 
 #waifu-toggle.waifu-toggle-active:hover {
-	margin-right: -30px;
+	margin-left: -30px;
 }
 
 #waifu {
