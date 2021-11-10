@@ -2,94 +2,779 @@
 <html lang="zh-CN">
 
 <head>
+    <style type="text/css" class="AMap.style">
+        .vml {
+            behavior: url(#default#VML);
+            display: inline-block;
+            position: absolute
+        }
+
+        .amap-custom {
+            top: 0;
+            left: 0;
+            position: absolute
+        }
+
+        .amap-container img {
+            max-width: none !important;
+            max-height: none !important
+        }
+
+        .amap-container {
+            touch-action: none;
+            position: relative;
+            overflow: hidden;
+            background: #fcf9f2 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0AgMAAAC2uDcZAAAADFBMVEX////////////////1pQ5zAAAABHRSTlMAgP/AWuZC2AAAAVhJREFUeAFiYGAQYGDEQjAB2rcDC4BiGIqiU7abdKlO2QkeIClyPsDHweMKtOPHIJ1Op6/w7Y4fdqfT6VpndzqdrnV2p9PpWmd3Oj3qWndSoKp+2J1Op7vr7E6n07XO7nQ6XevsTqfTtc7udPo4/f787E6n0911dqfT6VpndzqdrnV2p9PpWmd3Ot27Ce8m6HS6u85dR6fTtU7r6HS61mkdnU7XOrvT6XTvJuxOp9PddXan0+laZ3c6na51dDpd67SOTqd7N+HdBJ1Od9e56+h0utZpHZ1O1zq70+l0rbM7nU73bsLudDrdXWd3Ol3rtI5Op2ud1tHpdK3TOjqd7t2EdxN0Ot1dZ3c6na51dqfT6VpndzqdrnV2p9Pp3k3Q6XR3nbuOTqdrndbR6XSt0zo6na51Wken072bsDudTnfX2Z1Op2ud3el0utbZnU7XOq2j0+t0uncTD1gO4zoT5doZAAAAAElFTkSuQmCC);
+            -ms-touch-action: none
+        }
+
+        .amap-drags,
+        .amap-layers {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden
+        }
+
+        .amap-layers canvas {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        .amap-layer img {
+            pointer-events: none
+        }
+
+        .amap-e,
+        .amap-maps {
+            width: 100%;
+            height: 100%
+        }
+
+        .amap-maps,
+        .amap-e,
+        .amap-layers,
+        .amap-tile,
+        .amap-tile-container {
+            position: absolute;
+            left: 0;
+            top: 0;
+            overflow: hidden
+        }
+
+        .amap-context {
+            position: absolute;
+            left: 0;
+            top: 0
+        }
+
+        .amap-overlays,
+        .amap-markers,
+        .amap-marker {
+            position: absolute;
+            left: 0;
+            top: 0
+        }
+
+        .amap-layers {
+            z-index: 0
+        }
+
+        .amap-overlays {
+            z-index: 110;
+            cursor: default
+        }
+
+        .amap-markers {
+            z-index: 120
+        }
+
+        .amap-controls {
+            z-index: 150
+        }
+
+        .amap-copyright {
+            position: absolute;
+            display: block !important;
+            left: 77px;
+            height: 16px;
+            bottom: 0;
+            padding-bottom: 3px;
+            font-size: 11px;
+            font-family: Arial, sans-serif;
+            z-index: 160
+        }
+
+        .amap-logo {
+            position: absolute;
+            bottom: 1px;
+            left: 1px;
+            z-index: 160;
+            height: 20px
+        }
+
+        .amap-logo img {
+            width: 73px !important;
+            height: 20px !important;
+            border: 0;
+            vertical-align: baseline !important
+        }
+
+        .amap-icon {
+            position: relative;
+            z-index: 1
+        }
+
+        .amap-icon img {
+            position: absolute;
+            z-index: -1
+        }
+
+        .amap-marker-label {
+            position: absolute;
+            z-index: 2;
+            border: 1px solid blue;
+            background-color: white;
+            white-space: nowrap;
+            cursor: default;
+            padding: 3px;
+            font-size: 12px;
+            line-height: 14px
+        }
+
+        .amap-info {
+            position: absolute;
+            left: 0;
+            z-index: 140;
+            width: 320px
+        }
+
+        .amap-menu {
+            position: absolute;
+            z-index: 140;
+            _width: 100px
+        }
+
+        .amap-info-close {
+            position: absolute;
+            right: 5px;
+            _right: 12px;
+            +right: 11px;
+            top: 5px;
+            _top: 2px;
+            +top: 2px;
+            color: #c3c3c3;
+            text-decoration: none;
+            font: bold 16px/14px Tahoma, Verdana, sans-serif;
+            width: 14px;
+            height: 14px
+        }
+
+        .amap-info-outer,
+        .amap-menu-outer {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            background: none repeat scroll 0 0 white;
+            border-radius: 2px;
+            padding: 1px;
+            text-align: left
+        }
+
+        .amap-menu-outer:hover {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
+        }
+
+        .amap-info-contentContainer:hover .amap-info-outer {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
+        }
+
+        .amap-info-content {
+            position: relative;
+            background: #fff;
+            padding: 10px 18px 10px 10px;
+            line-height: 1.4;
+            overflow: auto
+        }
+
+        .amap-marker-content {
+            position: relative
+        }
+
+        .amap-info {
+            _width: 320px
+        }
+
+        .amap-menu {
+            _width: 100px
+        }
+
+        .amap-info-sharp-old {
+            overflow: hidden;
+            position: absolute;
+            background-image: url(http://webapi.amap.com/images/arrows.png)
+        }
+
+        .bottom-center .amap-info-sharp-old {
+            height: 12px;
+            margin: 0 auto;
+            width: 20px;
+            background-position: center 12px;
+            top: 100%;
+            margin-top: -9px;
+            left: 50%;
+            margin-left: -10px
+        }
+
+        .bottom-left .amap-info-sharp-old {
+            height: 12px;
+            width: 13px;
+            background-position: -16px -46px;
+            top: 100%;
+            margin-top: -9px
+        }
+
+        .bottom-right .amap-info-sharp-old {
+            height: 12px;
+            width: 13px;
+            top: -1px;
+            background-position: -56px -46px;
+            left: 100%;
+            margin-left: -13px;
+            top: 100%;
+            margin-top: -9px
+        }
+
+        .middle-left .amap-info-sharp-old {
+            height: 20px;
+            width: 12px;
+            background-position: left;
+            top: 50%;
+            margin-top: -10px;
+            margin-left: -11px
+        }
+
+        .center .amap-info-sharp-old {
+            display: none
+        }
+
+        .middle-right .amap-info-sharp-old {
+            height: 20px;
+            margin-right: 0;
+            width: 12px;
+            background-position: right;
+            left: 100%;
+            margin-left: -9px;
+            top: 50%;
+            margin-top: -10px
+        }
+
+        .top-center .amap-info-sharp-old {
+            height: 12px;
+            margin: 0 auto;
+            width: 20px;
+            background-position: top;
+            top: 0;
+            margin-top: -3px;
+            left: 50%;
+            margin-left: -10px
+        }
+
+        .top-left .amap-info-sharp-old {
+            height: 12px;
+            width: 13px;
+            background-position: -16px -3px;
+            top: 0;
+            margin-top: -3px
+        }
+
+        .top-right .amap-info-sharp-old {
+            height: 12px;
+            width: 13px;
+            background-position: -56px -3px;
+            left: 100%;
+            margin-left: -13px;
+            top: 0;
+            margin-top: -3px
+        }
+
+        .amap-info-sharp {
+            position: absolute
+        }
+
+        .bottom-center .amap-info-sharp {
+            bottom: 0;
+            left: 50%;
+            margin-left: -8px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #fff
+        }
+
+        .bottom-center .amap-info-sharp:after {
+            position: absolute;
+            content: "";
+            margin-left: -8px;
+            margin-top: -7px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid rgba(0, 0, 0, 0.3);
+            filter: blur(2px);
+            z-index: -1
+        }
+
+        .amap-info-contentContainer:hover.bottom-center .amap-info-sharp:after {
+            border-top: 8px solid rgba(0, 0, 0, 0.5)
+        }
+
+        .bottom-left .amap-info-sharp {
+            border-color: transparent #fff;
+            border-width: 0 0 10px 10px;
+            border-style: solid
+        }
+
+        .bottom-left .amap-info-sharp:after {
+            position: absolute;
+            content: "";
+            margin-left: -10px;
+            border-color: transparent rgba(0, 0, 0, 0.3);
+            border-width: 0 0 10px 10px;
+            border-style: solid;
+            filter: blur(1px);
+            z-index: -1
+        }
+
+        .amap-info-contentContainer:hover.bottom-left .amap-info-sharp:after {
+            border-color: transparent rgba(0, 0, 0, 0.5)
+        }
+
+        .bottom-left .amap-info-content {
+            border-radius: 2px 2px 2px 0
+        }
+
+        .bottom-right .amap-info-sharp {
+            right: 0;
+            border-top: 10px solid #fff;
+            border-left: 10px solid transparent
+        }
+
+        .bottom-right .amap-info-sharp:after {
+            position: absolute;
+            margin-top: -9px;
+            margin-left: -10px;
+            content: "";
+            border-top: 10px solid rgba(0, 0, 0, 0.3);
+            border-left: 10px solid transparent;
+            filter: blur(1px);
+            z-index: -1
+        }
+
+        .amap-info-contentContainer:hover.bottom-right .amap-info-sharp:after {
+            border-top: 10px solid rgba(0, 0, 0, 0.5)
+        }
+
+        .bottom-right .amap-info-content {
+            border-radius: 2px 2px 0 2px
+        }
+
+        .top-center .amap-info-sharp {
+            top: 0;
+            left: 50%;
+            margin-left: -8px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #fff
+        }
+
+        .top-center .amap-info-sharp:after {
+            position: absolute;
+            content: "";
+            margin-top: 0;
+            margin-left: -8px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid rgba(0, 0, 0, 0.3);
+            filter: blur(1px);
+            z-index: -1
+        }
+
+        .top-left .amap-info-sharp {
+            left: 0;
+            top: 0;
+            border-bottom: 10px solid #fff;
+            border-right: 10px solid transparent
+        }
+
+        .top-left .amap-info-sharp:after {
+            position: absolute;
+            content: "";
+            margin-top: 0;
+            margin-left: 0;
+            border-bottom: 10px solid rgba(0, 0, 0, 0.3);
+            border-right: 10px solid transparent;
+            filter: blur(1px);
+            z-index: -1
+        }
+
+        .top-right .amap-info-sharp {
+            right: 0;
+            top: 0;
+            border-bottom: 10px solid #fff;
+            border-left: 10px solid transparent
+        }
+
+        .top-right .amap-info-sharp:after {
+            position: absolute;
+            content: "";
+            margin-top: 0;
+            margin-left: -10px;
+            border-bottom: 10px solid rgba(0, 0, 0, 0.3);
+            border-left: 10px solid transparent;
+            filter: blur(1px);
+            z-index: -1
+        }
+
+        .middle-right .amap-info-sharp {
+            right: 0;
+            top: 50%;
+            margin-top: -8px;
+            border-top: 8px solid transparent;
+            border-left: 8px solid #fff;
+            border-bottom: 8px solid transparent
+        }
+
+        .middle-right .amap-info-sharp:after {
+            position: absolute;
+            content: "";
+            margin-top: -8px;
+            margin-left: -8px;
+            border-top: 8px solid transparent;
+            border-left: 8px solid rgba(0, 0, 0, 0.3);
+            border-bottom: 8px solid transparent;
+            filter: blur(1px);
+            z-index: -1
+        }
+
+        .amap-info-contentContainer:hover.middle-right .amap-info-sharp:after {
+            border-left: 8px solid rgba(0, 0, 0, 0.5)
+        }
+
+        .middle-left .amap-info-sharp {
+            left: 0;
+            top: 50%;
+            margin-top: -8px;
+            border-top: 8px solid transparent;
+            border-right: 8px solid #fff;
+            border-bottom: 8px solid transparent
+        }
+
+        .middle-left .amap-info-sharp:after {
+            position: absolute;
+            content: "";
+            margin-top: -8px;
+            margin-left: 0;
+            border-top: 8px solid transparent;
+            border-right: 8px solid rgba(0, 0, 0, 0.3);
+            border-bottom: 8px solid transparent;
+            filter: blur(1px);
+            z-index: -1
+        }
+
+        .amap-info-contentContainer:hover.middle-left .amap-info-sharp:after {
+            border-right: 8px solid rgba(0, 0, 0, 0.5)
+        }
+
+        .amap-info-contentContainer.top-left,
+        .amap-info-contentContainer.top-center,
+        .amap-info-contentContainer.top-right {
+            padding-top: 8px
+        }
+
+        .amap-info-contentContainer.bottom-left,
+        .amap-info-contentContainer.bottom-center,
+        .amap-info-contentContainer.bottom-right {
+            padding-bottom: 8px
+        }
+
+        .amap-info-contentContainer.middle-right {
+            padding-right: 8px
+        }
+
+        .amap-info-contentContainer.middle-left {
+            padding-left: 8px
+        }
+
+        .amap-menu-outer {
+            margin: 0;
+            padding: 0;
+            list-style-type: none
+        }
+
+        ul.amap-menu-outer li {
+            cursor: pointer;
+            height: 35px;
+            line-height: 35px;
+            word-break: break-all;
+            padding: 0 10px;
+            font-size: 12px;
+            white-space: nowrap
+        }
+
+        ul.amap-menu-outer li a {
+            text-decoration: none;
+            font-size: 13px;
+            margin: 0 5px;
+            color: #000;
+            padding: 5px 5px
+        }
+
+        ul.amap-menu-outer li:hover {
+            background-color: #f3f3ee
+        }
+
+        .amap-overlay-text-container {
+            display: block;
+            width: auto;
+            word-break: keep-all;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: #fff;
+            padding: 2px 3px;
+            border: 1px solid #ccc;
+            border-radius: 3px
+        }
+
+        .amap-overlay-text-container.amap-overlay-text-empty {
+            display: none
+        }
+
+        .amap-info-content-ie8 {
+            border: 1px solid #9c9c9c
+        }
+    </style>
+    <style type="text/css">
+        .amap-logo {
+            display: block !important;
+            pointer-events: none;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>新标签页 | 所长导航</title>
-    <meta name="theme-color" content="#f9f9f9" />
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
+    <meta name="theme-color" content="#f9f9f9">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://nav.iowen.cn" />
+    <meta property="og:url" content="https://www.hifast.cn">
     <meta property="og:title" content="新标签页 | 所长导航">
     <meta property="og:description" content="">
-    <meta property="og:image" content="https://nav.iowen.cn/wp-content/themes/onenav/screenshot.jpg">
+    <meta property="og:image" content="https://www.hifast.cn/wp-content/uploads/2021/02/hifast.png">
     <meta property="og:site_name" content="所长导航">
-    <link rel="shortcut icon" href="./ico.ico">
-    <link rel="apple-touch-icon" href="https://nav.iowen.cn/wp-content/themes/onenav/images/app-ico.png">
-    <meta name='robots' content='max-image-preview:large' />
-    <link rel='stylesheet' id='iconfont-css' href='https://at.alicdn.com/t/font_2768144_khli9xs79g.css' type='text/css'
-        media='all'>
-    <link rel='stylesheet' id='bootstrap-css' href='mini/bootstrap.min.css?ver=3.1009' type='text/css' media='all' />
-    <link rel='stylesheet' id='style-css' href='mini/style.min.css?ver=3.1009' type='text/css' media='all' />
-    <script type='text/javascript' src='mini/jquery.min.js?ver=3.1009' id='jquery-js'></script>
-    <script type='text/javascript' id='jquery-js-after'>
-        /* <![CDATA[ */ function loadFunc(func) { var oldOnload = window.onload; if (typeof window.onload != "function") { window.onload = func; } else { window.onload = function () { oldOnload(); func(); } } } /* ]]> */
-    </script>
+    <link rel="shortcut icon" href="https://www.hifast.cn/wp-content/uploads/2021/02/hifast.png">
+    <link rel="apple-touch-icon" href="https://www.hifast.cn/wp-content/uploads/2021/02/hifast.png">
+    <meta name="robots" content="max-image-preview:large">
+    <link rel="stylesheet" id="iconfont-css"
+        href="https://at.alicdn.com/t/font_2768144_khli9xs79g.css"
+        type="text/css" media="all">
+    <link rel="stylesheet" id="bootstrap-css"
+        href="mini/bootstrap.min.css?ver=V3.0914%20-%20v1.0.0"
+        type="text/css" media="all">
+    <link rel="stylesheet" id="style-css"
+        href="mini/style.min.css?ver=V3.0914%20-%20v1.0.0"
+        type="text/css" media="all">
+    <link rel="stylesheet" id="parent-style-css"
+        href="mini/style.css?ver=5.7.2" type="text/css" media="all">
+    <link rel="stylesheet" id="child-style-css"
+        href="mini/style.css?ver=1632089245" type="text/css"
+        media="all">
+    <link rel="stylesheet" id="harry-child-global-css"
+        href="mini/global.css?ver=1633226759" type="text/css"
+        media="all">
+    <link rel="stylesheet" href="mini/he-simple.css?v=1.4.0">
+    <script src="mini/he-simple.js?v=1.4.0"></script>
+    <script type="text/javascript" charset="UTF-8" async="" src="mini/js-sdk-pro.min.js"
+        id="LA_COLLECT"></script>
+    <script type="text/javascript" src="mini/jquery.min.js?ver=V3.0914%20-%20v1.0.0"
+        id="jquery-js"></script>
+    <script type="text/javascript"
+        id="jquery-js-after">/* <![CDATA[ */ function loadFunc(func) { var oldOnload = window.onload; if (typeof window.onload != "function") { window.onload = func; } else { window.onload = function () { oldOnload(); func(); } } } /* ]]> */</script>
     <style>
+        /*修复和风天气*/
         #footer-tools [data-v-db6ccf64][data-v-41ba7e2c] {
             top: unset !important;
             bottom: 0 !important;
             right: 44px !important
         }
 
-        .io.icon-fw,
-        .iconfont.icon-fw {
-            width: 1.15em;
-        }
-
-        .io.icon-lg,
-        .iconfont.icon-lg {
-            font-size: 1.5em;
-            line-height: .75em;
-            vertical-align: -.125em;
-        }
-
-        .screenshot-carousel .img_wrapper a {
-            display: contents
-        }
-
-        .fancybox-slide--iframe .fancybox-content {
-            max-width: 1280px;
-            margin: 0
-        }
-
-        .fancybox-slide--iframe.fancybox-slide {
-            padding: 44px 0
-        }
-
-        .navbar-nav .menu-item-286 a {
-            background: #ff8116;
+        /*顶部角标*/
+        #header .navbar-nav li>a[rel='jiaobiao'] {
+            background: #f1404b;
             border-radius: 50px !important;
             padding: 5px 10px !important;
             margin: 5px 0 !important;
             color: #fff !important;
         }
 
-        .navbar-nav .menu-item-286 a i {
+        #header .navbar-nav li>a[rel='jiaobiao']>i {
             position: absolute;
             top: 0;
             right: -10px;
-            color: #f13522;
+            color: #ffcc00;
         }
 
-        .io-black-mode .navbar-nav .menu-item-286 a {
-            background: #ce9412;
+        /*tab栏背景色微调*/
+        .slider_menu[sliderTab]>.menu {
+            background: rgba(0, 0, 0, 0.03);
         }
 
-        .io-black-mode .navbar-nav .menu-item-286 a i {
-            color: #fff;
+        /*顶部边框透明度调整*/
+        body.io-grey-mode .big-header-banner.header-bg .page-header {
+            background: rgb(255 255 255 / 90%) !important;
         }
-    </style><!-- 自定义代码 -->
 
+        /*顶部大搜索上下尺寸调低*/
+        .header-big {
+            padding-top: 70px;
+            padding-bottom: 40px;
+        }
+
+        /*详情页文字大小*/
+        .site-content p {
+            font-size: 14px;
+        }
+
+        /*弹出微信公众号样式*/
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .weixin {
+            display: block;
+            text-align: center;
+            position: relative;
+        }
+
+        .weixin img {
+            display: none;
+        }
+
+        .weixin:hover img {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            margin-left: -115px;
+            padding-top: 30px;
+            display: block;
+        }
+
+        /*标签去掉后面的符号*/
+        .external:after {}
+
+        .external:after {
+            content: "";
+            font-family: "";
+            font-size: 75%;
+        }
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+        }
+
+        .external {
+            padding-right: 0px;
+        }
+    </style>
+    <link rel="icon" href="https://www.hifast.cn/wp-content/uploads/2021/01/20200413114804_4b07f1a8.png" sizes="32x32">
+    <link rel="icon" href="https://www.hifast.cn/wp-content/uploads/2021/01/20200413114804_4b07f1a8.png"
+        sizes="192x192">
+    <link rel="apple-touch-icon" href="https://www.hifast.cn/wp-content/uploads/2021/01/20200413114804_4b07f1a8.png">
+    <meta name="msapplication-TileImage"
+        content="https://www.hifast.cn/wp-content/uploads/2021/01/20200413114804_4b07f1a8.png"><!-- 自定义代码 -->
+
+    <style>
+        @media print {
+            #ghostery-tracker-tally {
+                display: none !important
+            }
+        }
+    </style>
+    <style id="theia-sticky-sidebar-stylesheet-TSS">
+        .theiaStickySidebar:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <style>
+        .one-pan-tip {
+            cursor: pointer;
+        }
+
+        .one-pan-tip::before {
+            background-position: center;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            box-sizing: border-box;
+            width: 1em;
+            height: 1em;
+            margin: 0 1px .15em 1px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .one-pan-tip-success::before {
+            content: '';
+            background-image: url(data:image/png;base64,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)
+        }
+
+        .one-pan-tip-error {
+            text-decoration: line-through;
+        }
+
+        .one-pan-tip-error::before {
+            content: '';
+            background-image: url(data:image/png;base64,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)
+        }
+
+        .one-pan-tip-other::before {
+            content: '';
+            background-image: url(data:image/png;base64,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)
+        }
+
+        .one-pan-tip-lock::before {
+            content: '';
+            background-image: url(data:image/png;base64,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)
+        }
+    </style>
+    <meta name="ljjc::status" content="on">
+    <script id="LA_CODELESS" src="https://sdk.51.la/event/js-sdk-event.min.js?u=JNO0wM1Tth1hLsh4"
+        data-la-ev="JNO0wM1Tth1hLsh4"></script>
+    <style type="text/css">
+        .amap-container {
+            cursor: url(https://webapi.amap.com/theme/v1.3/openhand.cur), default;
+        }
+
+        .amap-drag {
+            cursor: url(https://webapi.amap.com/theme/v1.3/closedhand.cur), default;
+        }
+    </style>
 </head>
 
 <body class="user-bookmark-body bookmark-default">
     <div class="page-container">
         <!-- background -->
         <div class="bookmark-bg">
-            <div class="img-bg" style="background-image: url(mini/bj.jpg)"> </div>
+            <div class="img-bg"
+                style="background-image: url(//cn.bing.com/th?id=OHR.DalyanTombs_ROW0649975776_UHD.jpg&amp;pid=hp&amp;w=2880&amp;h=1620&amp;rs=1&amp;c=4&amp;r=0)">
+            </div>
             <div class="gradient-linear"></div>
         </div><!-- background end -->
         <header class="navbar navbar-dark fixed-top">
@@ -121,7 +806,6 @@
                         </div>
                     </div>
                 </div>
-                </nav>
             </ul>
         </header>
         <div class="header-big mb-4">
@@ -133,156 +817,157 @@
                     <div id="search-list-menu" class="">
                         <div class="s-type text-center overflow-x-auto">
                             <div class="s-type-list big">
-                                <div class="anchor" style="position: absolute; left: 50%; opacity: 0;"></div>
-                                <label for="type-baidu" class="active" data-id="group-a"><span>常用</span></label>
-                                <label for="type-baidu1" data-id="group-b"><span>搜索</span></label>
-                                <label for="type-br" data-id="group-c"><span>工具</span></label>
-                                <label for="type-zhihu" data-id="group-d"><span>社区</span></label>
-                                <label for="type-taobao1" data-id="group-e"><span>生活</span></label>
-                                <label for="type-zhaopin" data-id="group-f"><span>求职</span></label>
+                                <div class="anchor" style="position: absolute; left: 12.5px; opacity: 1; width: 25px;">
+                                </div> <label for="type-baidu" class="active"
+                                    data-id="group-a"><span>常用</span></label><label for="type-baidu1" data-id="group-b"
+                                    class=""><span>搜索</span></label><label for="type-ciliduo" data-id="group-h"
+                                    class=""><span>磁力</span></label><label for="type-br" data-id="group-c"
+                                    class=""><span>工具</span></label><label for="type-zhihu" data-id="group-d"
+                                    class=""><span>社区</span></label><label for="type-taobao1" data-id="group-e"
+                                    class=""><span>生活</span></label>
                             </div>
                         </div>
                     </div>
-                    <form action="https://www.baidu.com/s?wd=%s%" method="get" target="_blank" class="super-search-fm">
+                    <form action="https://www.baidu.com/s?wd=" method="get" target="_blank" class="super-search-fm">
                         <input type="text" id="search-text" class="form-control smart-tips search-key" zhannei=""
                             placeholder="百度一下" style="outline:0" autocomplete="off"> <button type="submit"><i
-                                class="iconfont icon-search"></i></button>
-                    </form>
+                                class="iconfont icon-search"></i></button> </form>
                     <div id="search-list" class="hide-type-list">
-
                         <div class="search-group justify-content-center group-a s-current">
                             <ul class="search-type">
-                                <li><input hidden type="radio" name="type" id="type-baidu"
-                                        value="https://www.baidu.com/s?wd=%s%" data-placeholder="百度一下"><label
+                                <li><input checked="checked" hidden="" type="radio" name="type" id="type-baidu"
+                                        value="https://www.baidu.com/s?wd=" data-placeholder="百度一下"><label
                                         for="type-baidu"><span class="text-muted">百度</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-google"
-                                        value="https://www.google.com/search?q=%s%" data-placeholder="谷歌两下"><label
+                                        value="https://www.google.com/search?q=" data-placeholder="谷歌两下"><label
                                         for="type-google"><span class="text-muted">谷歌</span></label></li>
-                                <li><input hidden="" type="radio" name="type" id="type-zhannei"
-                                        value="https://www.423down.com/?s=" data-placeholder="软件搜索"><label
-                                        for="type-zhannei"><span class="text-muted">软件</span></label></li>
+                                <li><input hidden="" type="radio" name="type" id="type-quark"
+                                        value="https://quark.sm.cn/s?q=" data-placeholder="夸克搜索"><label
+                                        for="type-quark"><span class="text-muted">夸克</span></label></li>
+                                <li><input hidden="" type="radio" name="type" id="type-dgs3"
+                                        value="https://www.gobaidugle.com/search4?&amp;num=10&amp;one=baidu&amp;two=google&amp;three=sogou&amp;four=so&amp;keyword="
+                                        data-placeholder="百度谷歌搜狗360一应俱全"><label for="type-dgs3"><span
+                                            class="text-muted">四合一</span></label></li>
+                                <li><input hidden="" type="radio" name="type" id="type-cupfox"
+                                        value="https://www.cupfox.com/search?key=" data-placeholder="在茶杯狐搜索影视资源"><label
+                                        for="type-cupfox"><span class="text-muted">影视</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-taobao"
-                                        value="https://s.taobao.com/search?q=%s%" data-placeholder="淘宝"><label
+                                        value="https://s.taobao.com/search?q=" data-placeholder="淘宝"><label
                                         for="type-taobao"><span class="text-muted">淘宝</span></label></li>
-                                <li><input hidden="" type="radio" name="type" id="type-bing"
-                                        value="https://www.cupfox.com/search?key=" data-placeholder="影视资源聚合搜索"><label
-                                        for="type-bing"><span class="text-muted">影视</span></label></li>
                             </ul>
                         </div>
-                        <div class="search-group justify-content-center group-b ">
+                        <div class="search-group justify-content-center group-b">
                             <ul class="search-type">
                                 <li><input hidden="" type="radio" name="type" id="type-baidu1"
-                                        value="https://www.baidu.com/s?wd=%s%" data-placeholder="百度一下"><label
+                                        value="https://www.baidu.com/s?wd=" data-placeholder="百度一下"><label
                                         for="type-baidu1"><span class="text-muted">百度</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-google1"
-                                        value="https://www.google.com/search?q=%s%" data-placeholder="谷歌两下"><label
+                                        value="https://www.google.com/search?q=" data-placeholder="谷歌两下"><label
                                         for="type-google1"><span class="text-muted">谷歌</span></label></li>
+                                <li><input hidden="" type="radio" name="type" id="type-quark"
+                                        value="https://quark.sm.cn/s?q=" data-placeholder="夸克搜索"><label
+                                        for="type-quark"><span class="text-muted">夸克</span></label></li>
+                                <li><input hidden="" type="radio" name="type" id="type-dgs31"
+                                        value="https://www.gobaidugle.com/search4?&amp;num=10&amp;one=baidu&amp;two=google&amp;three=sogou&amp;four=so&amp;keyword="
+                                        data-placeholder="百度谷歌搜狗360一应俱全"><label for="type-dgs31"><span
+                                            class="text-muted">四合一</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-360"
-                                        value="https://www.so.com/s?q=%s%" data-placeholder="360好搜"><label
+                                        value="https://www.so.com/s?q=" data-placeholder="360好搜"><label
                                         for="type-360"><span class="text-muted">360</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-sogo"
-                                        value="https://www.sogou.com/web?query=%s%" data-placeholder="搜狗搜索"><label
+                                        value="https://www.sogou.com/web?query=" data-placeholder="搜狗搜索"><label
                                         for="type-sogo"><span class="text-muted">搜狗</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-bing1"
-                                        value="https://cn.bing.com/search?q=%s%" data-placeholder="微软Bing搜索"><label
+                                        value="https://cn.bing.com/search?q=" data-placeholder="微软Bing搜索"><label
                                         for="type-bing1"><span class="text-muted">必应</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-sm"
-                                        value="https://yz.m.sm.cn/s?q=%s%" data-placeholder="UC移动端搜索"><label
+                                        value="https://yz.m.sm.cn/s?q=" data-placeholder="UC移动端搜索"><label
                                         for="type-sm"><span class="text-muted">神马</span></label></li>
                             </ul>
                         </div>
-                        <div class="search-group justify-content-center group-c ">
+                        <div class="search-group justify-content-center group-h">
+                            <ul class="search-type">
+                                <li><input hidden="" type="radio" name="type" id="type-ciliduo"
+                                        value="https://nao.so11.top/?q=" data-placeholder="请输入关键词开启磁力搜索之旅！"><label
+                                        for="type-ciliduo"><span class="text-muted">磁力多</span></label></li>
+                                <li><input hidden="" type="radio" name="type" id="type-clkd"
+                                        value="http://koudai1.xyz/#/search/" data-placeholder="请输入关键词开启磁力搜索之旅！"><label
+                                        for="type-clkd"><span class="text-muted">磁力口袋</span></label></li>
+                                <li><input hidden="" type="radio" name="type" id="type-wujicili"
+                                        value="https://9mag.net/search?q=" data-placeholder="请输入关键词开启磁力搜索之旅！"><label
+                                        for="type-wujicili"><span class="text-muted">无极磁链</span></label></li>
+                            </ul>
+                        </div>
+                        <div class="search-group justify-content-center group-c">
                             <ul class="search-type">
                                 <li><input hidden="" type="radio" name="type" id="type-br"
-                                        value="https://rank.chinaz.com/all/%s%"
-                                        data-placeholder="请输入网址(不带https://)"><label for="type-br"><span
-                                            class="text-muted">权重查询</span></label></li>
+                                        value="http://rank.chinaz.com/all/" data-placeholder="请输入网址(不带http://)"><label
+                                        for="type-br"><span class="text-muted">权重查询</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-links"
-                                        value="https://link.chinaz.com/%s%" data-placeholder="请输入网址(不带https://)"><label
+                                        value="http://link.chinaz.com/" data-placeholder="请输入网址(不带http://)"><label
                                         for="type-links"><span class="text-muted">友链检测</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-icp"
-                                        value="https://icp.aizhan.com/%s%" data-placeholder="请输入网址(不带https://)"><label
+                                        value="https://icp.aizhan.com/" data-placeholder="请输入网址(不带http://)"><label
                                         for="type-icp"><span class="text-muted">备案查询</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-ping"
-                                        value="https://ping.chinaz.com/%s%" data-placeholder="请输入网址(不带https://)"><label
+                                        value="http://ping.chinaz.com/" data-placeholder="请输入网址(不带http://)"><label
                                         for="type-ping"><span class="text-muted">PING检测</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-404"
-                                        value="https://tool.chinaz.com/Links/?DAddress=%s%"
-                                        data-placeholder="请输入网址(不带https://)"><label for="type-404"><span
+                                        value="http://tool.chinaz.com/Links/?DAddress="
+                                        data-placeholder="请输入网址(不带http://)"><label for="type-404"><span
                                             class="text-muted">死链检测</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-ciku"
-                                        value="https://www.ciku5.com/s?wd=%s%" data-placeholder="请输入关键词"><label
+                                        value="http://www.ciku5.com/s?wd=" data-placeholder="请输入关键词"><label
                                         for="type-ciku"><span class="text-muted">关键词挖掘</span></label></li>
                             </ul>
                         </div>
-                        <div class="search-group justify-content-center group-d ">
+                        <div class="search-group justify-content-center group-d">
                             <ul class="search-type">
                                 <li><input hidden="" type="radio" name="type" id="type-zhihu"
-                                        value="https://www.zhihu.com/search?type=content&amp;q=%s%"
+                                        value="https://www.zhihu.com/search?type=content&amp;q="
                                         data-placeholder="知乎"><label for="type-zhihu"><span
                                             class="text-muted">知乎</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-wechat"
-                                        value="https://weixin.sogou.com/weixin?type=2&amp;query=%s%"
+                                        value="http://weixin.sogou.com/weixin?type=2&amp;query="
                                         data-placeholder="微信"><label for="type-wechat"><span
                                             class="text-muted">微信</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-weibo"
-                                        value="https://s.weibo.com/weibo/%s%" data-placeholder="微博"><label
+                                        value="http://s.weibo.com/weibo/" data-placeholder="微博"><label
                                         for="type-weibo"><span class="text-muted">微博</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-douban"
-                                        value="https://www.douban.com/search?q=%s%" data-placeholder="豆瓣"><label
+                                        value="https://www.douban.com/search?q=" data-placeholder="豆瓣"><label
                                         for="type-douban"><span class="text-muted">豆瓣</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-why"
-                                        value="https://ask.seowhy.com/search/?q=%s%" data-placeholder="SEO问答社区"><label
+                                        value="https://ask.seowhy.com/search/?q=" data-placeholder="SEO问答社区"><label
                                         for="type-why"><span class="text-muted">搜外问答</span></label></li>
                             </ul>
                         </div>
-                        <div class="search-group justify-content-center group-e ">
+                        <div class="search-group justify-content-center group-e">
                             <ul class="search-type">
                                 <li><input hidden="" type="radio" name="type" id="type-taobao1"
-                                        value="https://s.taobao.com/search?q=%s%" data-placeholder="淘宝"><label
+                                        value="https://s.taobao.com/search?q=" data-placeholder="淘宝"><label
                                         for="type-taobao1"><span class="text-muted">淘宝</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-jd"
-                                        value="https://search.jd.com/Search?keyword=%s%" data-placeholder="京东"><label
+                                        value="https://search.jd.com/Search?keyword=" data-placeholder="京东"><label
                                         for="type-jd"><span class="text-muted">京东</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-xiachufang"
-                                        value="https://www.xiachufang.com/search/?keyword=%s%"
-                                        data-placeholder="下厨房"><label for="type-xiachufang"><span
-                                            class="text-muted">下厨房</span></label></li>
+                                        value="http://www.xiachufang.com/search/?keyword=" data-placeholder="下厨房"><label
+                                        for="type-xiachufang"><span class="text-muted">下厨房</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-xiangha"
-                                        value="https://www.xiangha.com/so/?q=caipu&amp;s=%s%"
+                                        value="https://www.xiangha.com/so/?q=caipu&amp;s="
                                         data-placeholder="香哈菜谱"><label for="type-xiangha"><span
                                             class="text-muted">香哈菜谱</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-12306"
-                                        value="https://www.12306.cn/?%s%" data-placeholder="12306"><label
+                                        value="http://www.12306.cn/?" data-placeholder="12306"><label
                                         for="type-12306"><span class="text-muted">12306</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-kd100"
-                                        value="https://www.kuaidi100.com/?%s%" data-placeholder="快递100"><label
+                                        value="http://www.kuaidi100.com/?" data-placeholder="快递100"><label
                                         for="type-kd100"><span class="text-muted">快递100</span></label></li>
                                 <li><input hidden="" type="radio" name="type" id="type-qunar"
-                                        value="https://www.qunar.com/?%s%" data-placeholder="去哪儿"><label
+                                        value="https://www.qunar.com/?" data-placeholder="去哪儿"><label
                                         for="type-qunar"><span class="text-muted">去哪儿</span></label></li>
                             </ul>
                         </div>
-                        <div class="search-group justify-content-center group-f ">
-                            <ul class="search-type">
-                                <li><input hidden="" type="radio" name="type" id="type-zhaopin"
-                                        value="https://sou.zhaopin.com/jobs/searchresult.ashx?kw=%s%"
-                                        data-placeholder="智联招聘"><label for="type-zhaopin"><span
-                                            class="text-muted">智联招聘</span></label></li>
-                                <li><input hidden="" type="radio" name="type" id="type-51job"
-                                        value="https://search.51job.com/?%s%" data-placeholder="前程无忧"><label
-                                        for="type-51job"><span class="text-muted">前程无忧</span></label></li>
-                                <li><input hidden="" type="radio" name="type" id="type-lagou"
-                                        value="https://www.lagou.com/jobs/list_%s%" data-placeholder="拉勾网"><label
-                                        for="type-lagou"><span class="text-muted">拉勾网</span></label></li>
-                                <li><input hidden="" type="radio" name="type" id="type-liepin"
-                                        value="https://www.liepin.com/zhaopin/?key=%s%" data-placeholder="猎聘网"><label
-                                        for="type-liepin"><span class="text-muted">猎聘网</span></label></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card search-smart-tips" style="display: none">
-                        <ul></ul>
                     </div>
                 </div>
             </div>
@@ -290,128 +975,166 @@
         <section class="quick-sites position-relative">
             <div class="container text-center px-5">
                 <div class="row"> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
-                        href="https://github.com/" title="Github" rel=" noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/github.png"
-                                    data-src="ico/github.png" onerror="javascript:this.src='ico/github.png'"
-                                    alt="Github"> </div>
+                    href="https://github.com/" title="Github" rel=" noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/github.png"
+                                data-src="ico/github.png" onerror="javascript:this.src='ico/github.png'"
+                                alt="Github"> </div>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>Github</span>
+                    </div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank" href="https://gitee.com/"
+                    title="Gitee" rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/gitee.png"
+                                data-src="ico/gitee.png" onerror="javascript:this.src='ico/gitee.png'" alt="Gitee">
                         </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>Github</span>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>Gitee</span></div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
+                    href="http://www.52pojie.cn/" title="吾爱破解" rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/52.png"
+                                data-src="ico/52.png" onerror="javascript:this.src='ico/52.png'" alt="吾爱破解"> </div>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>吾爱破解</span>
+                    </div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
+                    href="https://www.mpyit.com/" title="殁漂遥" rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/mpy.png"
+                                data-src="ico/mpy.png" onerror="javascript:this.src='ico/mpy.png'" alt="殁漂遥"> </div>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>殁漂遥</span></div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank" href="https://ibaotu.com/"
+                    title="包图网" rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/baotu.png"
+                                data-src="ico/baotu.png" onerror="javascript:this.src='ico/baotu.png'" alt="包图网">
                         </div>
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank" href="https://gitee.com/"
-                        title="Gitee" rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/gitee.png"
-                                    data-src="ico/gitee.png" onerror="javascript:this.src='ico/gitee.png'" alt="Gitee">
-                            </div>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>包图网</span></div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
+                    href="https://www.58pic.com/" title="千图网" rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/qiantu.png"
+                                data-src="ico/qiantu.png" onerror="javascript:this.src='ico/qiantu.png'" alt="千图网">
                         </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>Gitee</span></div>
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
-                        href="http://www.52pojie.cn/" title="吾爱破解" rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/52.png"
-                                    data-src="ico/52.png" onerror="javascript:this.src='ico/52.png'" alt="吾爱破解"> </div>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>千图网</span></div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
+                    href="https://ui.ptlogin2.qq.com/cgi-bin/login?style=9&appid=522005705&daid=4&s_url=https%3A%2F%2Fw.mail.qq.com%2Fcgi-bin%2Flogin%3Fvt%3Dpassport%26vm%3Dwsk%26delegate_url%3D%26f%3Dxhtml%26target%3D&hln_css=http%3A%2F%2Fmail.qq.com%2Fzh_CN%2Fhtmledition%2Fimages%2Flogo%2Fqqmail%2Fqqmail_logo_default_200h.png&low_login=1&hln_autologin=记住登录状态&pt_no_onekey=1"
+                    title="QQ邮箱" rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/QQyx.png"
+                                data-src="ico/QQyx.png" onerror="javascript:this.src='ico/QQyx.png'" alt="QQ邮箱">
                         </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>吾爱破解</span>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>QQ邮箱</span></div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
+                    href="https://bbs.125.la/" title="精易论坛"
+                    rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/jingyi.png"
+                                data-src="ico/jingyi.png" onerror="javascript:this.src='ico/jingyi.png'" alt="精易论坛">
                         </div>
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
-                        href="https://www.mpyit.com/" title="殁漂遥" rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/mpy.png"
-                                    data-src="ico/mpy.png" onerror="javascript:this.src='ico/mpy.png'" alt="殁漂遥"> </div>
-                        </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>殁漂遥</span></div>
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank" href="https://ibaotu.com/"
-                        title="包图网" rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/baotu.png"
-                                    data-src="ico/baotu.png" onerror="javascript:this.src='ico/baotu.png'" alt="包图网">
-                            </div>
-                        </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>包图网</span></div>
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
-                        href="https://www.58pic.com/" title="千图网" rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/qiantu.png"
-                                    data-src="ico/qiantu.png" onerror="javascript:this.src='ico/qiantu.png'" alt="千图网">
-                            </div>
-                        </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>千图网</span></div>
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
-                        href="https://ui.ptlogin2.qq.com/cgi-bin/login?style=9&appid=522005705&daid=4&s_url=https%3A%2F%2Fw.mail.qq.com%2Fcgi-bin%2Flogin%3Fvt%3Dpassport%26vm%3Dwsk%26delegate_url%3D%26f%3Dxhtml%26target%3D&hln_css=http%3A%2F%2Fmail.qq.com%2Fzh_CN%2Fhtmledition%2Fimages%2Flogo%2Fqqmail%2Fqqmail_logo_default_200h.png&low_login=1&hln_autologin=记住登录状态&pt_no_onekey=1"
-                        title="QQ邮箱" rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/QQyx.png"
-                                    data-src="ico/QQyx.png" onerror="javascript:this.src='ico/QQyx.png'" alt="QQ邮箱">
-                            </div>
-                        </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>QQ邮箱</span></div>
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
-                        href="https://bbs.125.la/" title="精易论坛"
-                        rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/jingyi.png"
-                                    data-src="ico/jingyi.png" onerror="javascript:this.src='ico/jingyi.png'" alt="精易论坛">
-                            </div>
-                        </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>精易论坛</span></div>
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
-                        href="https://www.bilibili.com/" title="哔哩哔哩" rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/bilibili.png"
-                                    data-src="ico/bilibili.png" onerror="javascript:this.src='ico/bilibili.png'"
-                                    alt="哔哩哔哩"> </div>
-                        </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>哔哩哔哩</span></div>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>精易论坛</span></div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
+                    href="https://www.bilibili.com/" title="哔哩哔哩" rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/bilibili.png"
+                                data-src="ico/bilibili.png" onerror="javascript:this.src='ico/bilibili.png'"
+                                alt="哔哩哔哩"> </div>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>哔哩哔哩</span></div>
 
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
-                        href="https://www.o8tv.com/" title="555电影" rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/555dianying.png"
-                                    data-src="ico/555dianying.png" onerror="javascript:this.src='ico/555dianying.png'"
-                                    alt="555电影"> </div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
+                    href="https://www.o8tv.com/" title="555电影" rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/555dianying.png"
+                                data-src="ico/555dianying.png" onerror="javascript:this.src='ico/555dianying.png'"
+                                alt="555电影"> </div>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>555电影</span></div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
+                    href="https://www.bd2020.com/" title="BD影视" rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/BDyingshi.png"
+                                data-src="ico/BDyingshi.png" onerror="javascript:this.src='ico/BDyingshi.png'"
+                                alt="BD影视"> </div>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>BD影视</span></div>
+                </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
+                    href="https://www.ghxi.com/" title="果核剥壳" rel="external nofollow noopener">
+                    <div class="d-flex mb-2">
+                        <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/guohe.png"
+                                data-src="ico/guohe.png" onerror="javascript:this.src='ico/guohe.png'" alt="果核剥壳">
                         </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>555电影</span></div>
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
-                        href="https://www.bd2020.com/" title="BD影视" rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/BDyingshi.png"
-                                    data-src="ico/BDyingshi.png" onerror="javascript:this.src='ico/BDyingshi.png'"
-                                    alt="BD影视"> </div>
-                        </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>BD影视</span></div>
-                    </a> <a class="sites-btn col-3 col-md-2 text-center mb-4" target="_blank"
-                        href="https://www.ghxi.com/" title="果核剥壳" rel="external nofollow noopener">
-                        <div class="d-flex mb-2">
-                            <div class="sites-icon mx-auto ub-blur-bg"> <img class="lazy" src="ico/guohe.png"
-                                    data-src="ico/guohe.png" onerror="javascript:this.src='ico/guohe.png'" alt="果核剥壳">
-                            </div>
-                        </div>
-                        <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>果核剥壳</span></div>
-                    </a> </div>
+                    </div>
+                    <div class="sites-title ub-blur-bg px-2 text-xs overflowClip_1"><span>果核剥壳</span></div>
+                </a> </div>
             </div>
         </section>
-
-        <footer class="main-footer footer-type-1 position-relative text-xs">
+        <footer class="main-footer footer-type-1 position-relative text-xs" style="">
             <div id="footer-tools" class="d-flex flex-column"> <a href="javascript:" id="go-to-up"
-                    class="btn rounded-circle go-up m-1" rel="go-top"> <i class="iconfont icon-to-up"></i> </a> </div>
+                    class="btn rounded-circle go-up m-1" rel="go-top" style="display: none;" one-link-mark="yes"> <i
+                        class="iconfont icon-to-up"></i> </a> </div>
             <div class="footer-inner text-center text-light my-3">
-                <div class="footer-text">Copyright 2021 所长导航 &nbsp;&nbsp;by <a href="https://github.com/liutongxu"
-                        target="_blank"><strong>LiuTongxu</strong></a>
+                <div class="footer-text">
+                    <p style="text-align: center;"><span style="font-family: 幼圆;"><span style="font-size: 8pt;"><span
+                                    style="font-size: 10pt; color: #999999;"><span
+                                        style="font-size: 10pt;">&nbsp;</span><span
+                                        style="font-size: 8pt; color: #808080;"><strong><span
+                                                style="font-family: 幼圆;">Copyright</span></strong>&nbsp;</span><strong><span
+                                            style="font-size: 8pt; color: #808080; font-family: 微软雅黑;">©</span></strong></span><span
+                                    style="color: #999999; font-family: 微软雅黑;">&nbsp;</span></span><span
+                                style="font-size: 10pt;"><strong><span
+                                        style="color: #808080; font-size: 8pt; font-family: 幼圆;">2020-2021</span></strong><span
+                                    style="font-size: 8pt;"><span style="font-size: 10pt;"><span
+                                            style="color: #999999;"><span style="font-size: 8pt;"><strong><span
+                                                        style="color: #808080; font-family: 幼圆;">|</span></strong>&nbsp;<span
+                                                    style="color: #808080;"><span style="font-family: 微软雅黑;"><span
+                                                            style="font-family: 黑体;"><span
+                                                                style="font-family: 幼圆;"><strong>Design
+                                                                    by</strong></span></span></span></span></span></span></span><strong>&nbsp;<span
+                                            style="font-size: 8pt; color: #808080; font-family: 幼圆;"><a
+                                                style="color: #808080;" href="http://www.hifast.cn"
+                                                one-link-mark="yes">所长导航</a></span></strong></span></span></span></p>
+                    <p style="text-align: center;"><span style="color: #808080; font-family: 幼圆;"><strong><span
+                                    style="font-size: 8pt;">本站仅为网址导航，网站来源于网络，对其内容不负任何责任，若有问题，请联系我们。</span></strong></span>
+                    </p>&nbsp;&nbsp;
                 </div>
             </div>
         </footer>
     </div><!-- page-container end -->
-
-    <script type='text/javascript' src='mini/clipboard.min.js?ver=3.1009' id='clipboard-mini-js'></script>
-    <script type='text/javascript' src='mini/popper.min.js?ver=3.1009' id='popper-js'></script>
-    <script type='text/javascript' src='mini/bootstrap.min.js?ver=3.1009' id='bootstrap-js'></script>
-    <script type='text/javascript' src='mini/theia-sticky-sidebar.min.js?ver=3.1009' id='sidebar-js'></script>
-    <script type='text/javascript' src='mini/lazyload.min.js?ver=3.1009' id='lazyload-js'></script>
-
-    <script type='text/javascript' src='mini/app.min.js?ver=3.1009' id='appjs-js'></script>
-    <script type='text/javascript' src='mini/bookmark.js?ver=3.1009' id='bookmark-js'></script> <!-- 自定义代码 -->
-    <!-- end 自定义代码 -->
+    <script type="text/javascript"
+        src="mini/clipboard.min.js?ver=V3.0914%20-%20v1.0.0"
+        id="clipboard-mini-js"></script>
+    <script type="text/javascript"
+        src="mini/popper.min.js?ver=V3.0914%20-%20v1.0.0"
+        id="popper-js"></script>
+    <script type="text/javascript"
+        src="mini/bootstrap.min.js?ver=V3.0914%20-%20v1.0.0"
+        id="bootstrap-js"></script>
+    <script type="text/javascript"
+        src="mini/theia-sticky-sidebar.min.js?ver=V3.0914%20-%20v1.0.0"
+        id="sidebar-js"></script>
+    <script type="text/javascript"
+        src="mini/lazyload.min.js?ver=V3.0914%20-%20v1.0.0"
+        id="lazyload-js"></script>
+    <script type="text/javascript"
+        id="appjs-js-extra">/* <![CDATA[ */var theme = { "ajaxurl": "https:\/\/www.hifast.cn\/wp-admin\/admin-ajax.php", "addico": "https:\/\/www.hifast.cn\/wp-content\/themes\/onenav\/images\/add.png", "order": "asc", "formpostion": "top", "defaultclass": "io-grey-mode", "isCustomize": "1", "icourl": "https:\/\/www.hifast.cn\/favicon\/get.php?url=", "icopng": "", "urlformat": "1", "customizemax": "6", "newWindow": "0", "lazyload": "1", "minNav": "0", "loading": "", "hotWords": "baidu", "classColumns": " col-sm-6 col-md-4 col-xl-5a col-xxl-6a ", "apikey": "TWpBeU1USTJNemd4TWpZM0d6RS9oVm1scWJVeFdNbGRUYVdaMVdVMHpRbEpHWmtkTVpWRjRVR3hzWlRGRw==", "isHome": "", "version": "V3.0914 - v1.0.0" }; var localize = { "liked": "\u60a8\u5df2\u7ecf\u8d5e\u8fc7\u4e86!", "like": "\u8c22\u8c22\u70b9\u8d5e!", "networkerror": "\u7f51\u7edc\u9519\u8bef --.", "selectCategory": "\u4e3a\u4ec0\u4e48\u4e0d\u9009\u5206\u7c7b\u3002", "addSuccess": "\u6dfb\u52a0\u6210\u529f\u3002", "timeout": "\u8bbf\u95ee\u8d85\u65f6\uff0c\u8bf7\u518d\u8bd5\u8bd5\uff0c\u6216\u8005\u624b\u52a8\u586b\u5199\u3002", "lightMode": "\u65e5\u95f4\u6a21\u5f0f", "nightMode": "\u591c\u95f4\u6a21\u5f0f", "editBtn": "\u7f16\u8f91", "okBtn": "\u786e\u5b9a", "urlExist": "\u8be5\u7f51\u5740\u5df2\u7ecf\u5b58\u5728\u4e86 --.", "cancelBtn": "\u53d6\u6d88", "successAlert": "\u6210\u529f", "infoAlert": "\u4fe1\u606f", "warningAlert": "\u8b66\u544a", "errorAlert": "\u9519\u8bef", "extractionCode": "\u7f51\u76d8\u63d0\u53d6\u7801\u5df2\u590d\u5236\uff0c\u70b9\u201c\u786e\u5b9a\u201d\u8fdb\u5165\u4e0b\u8f7d\u9875\u9762\u3002" };/* ]]> */</script>
+    <script type="text/javascript"
+        src="mini/app.min.js?ver=V3.0914%20-%20v1.0.0"
+        id="appjs-js"></script>
+    <script type="text/javascript"
+        src="mini/bookmark.js?ver=V3.0914%20-%20v1.0.0"
+        id="bookmark-js"></script>
+    <script type="text/javascript" src="mini/wp-embed.min.js?ver=5.7.2"
+        id="wp-embed-js"></script>
+    <script> (function () { if (1) { $("#search-text").focus(); } if ('group-a' && !localStorage.getItem("searchlist")) { $("label[data-id='group-a']").trigger('click'); } })()</script>
+    <script async="" src="mini/he-simple-common.js?v=2.0"></script>
 </body>
 
 </html>
