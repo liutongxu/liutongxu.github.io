@@ -16,9 +16,7 @@
     <script src='static/js/jquery.min.js' id='jquery-js'></script>
 </head>
 <body class="user-bookmark-body bookmark-default">
-<div id="loading">
-    <div id="preloader_3"></div>
-</div>
+
 <div class="page-container">
     <div class="bookmark-bg">
         <div class="img-bg" id="img-bg"></div>
@@ -266,14 +264,6 @@
 <script src="static/js/theia-sticky-sidebar.js"></script>
 <script src='static/js/lazyload.min.js' id='lazyload-js'></script>
 <script src='static/js/app.min.js' id='appjs-js'></script>
-<script>
-    $(document).ready(function () {
-        var siteWelcome = $('#loading');
-        siteWelcome.addClass('close');
-        setTimeout(function () {
-            siteWelcome.remove();
-        }, 600);
-    });
-</script>
+
 </body>
 </html>
