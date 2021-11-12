@@ -2603,7 +2603,7 @@ footer.main-footer {
     content: '';
     border-width: 8px 8px 0 8px;
     border-style: solid;
-    border-color: rgba(0, 0, 0, 0.6) transparent transparent;
+    border-color: rgba(0, 0, 0, 0.4) transparent transparent;
     position: absolute;
     left: 50%;
     top: 0;
@@ -2714,7 +2714,7 @@ footer.main-footer {
     padding: 9px 20px;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.6) !important
+    background-color: rgba(0, 0, 0, 0.4) !important
 }
 
 .header-big #search button {
