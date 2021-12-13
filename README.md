@@ -1,5 +1,5 @@
 # 所长导航
-# https://liutongxu.github.io/
+# https://liutongxu.github.io/  网站如使用代码可给个友情链接，谢谢！
 
 # 使用说明
 
