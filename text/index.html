@@ -1,271 +1,312 @@
 <!DOCTYPE html>
-
-<html>
-
-    <head>
-
-        <style>
-
-            html {
-
-                height: 100%;
-
-            }
-
-            body {
-
-                margin: 0px;
-
-                height: 100%;
-
-                display: flex;
-
-                flex-flow: column nowrap;
-
-                justify-content: center;
-
-                align-items: center;
-
-            }
-
-            .line-box {
-
-                display: flex;
-
-                flex-flow: row nowrap;
-
-                justify-content: center;
-
-                align-items: center;
-
-                margin-bottom: 60px;
-
-            }
-
-            input {
-
-                outline: none;
-
-                border: 0px;
-
-                border-bottom: 1px solid #e5e5e5;
-
-                height: 100px;
-
-                width: 800px;
-
-                font-size: 25pt;
-
-            }
-
-            input::placeholder {
-
-                color: #c5c5d5;
-
-            }
-
-            button {
-
-                outline: none;
-
-                height: 100pt;
-
-                width: 200pt;
-
-                border: 0px;
-
-                margin: 0pt 20pt 0pt 20pt;
-
-                border-radius: 3pt;
-
-                cursor: pointer;
-                
-                font-size: 25pt;
-
-            }
-
-            button:hover {
-
-                background-color: black;
-
-                color: white;
-
-            }
-
-        </style>
-
-        <script>
-
-            const decodeDic = {
-
-                "\u200B": "0",
-
-                "\uFEFF": "1",
-
-                "\u200D": "2",
-
-                "\u200C": "3",
-
-                "\u200E": "4",
-
-                "\u200F": "5",
-
-            };
-
-            const encodeDic = {
-
-                0: "\u200B",
-
-                1: "\uFEFF",
-
-                2: "\u200D",
-
-                3: "\u200C",
-
-                4: "\u200E",
-
-                5: "\u200F",
-
-            };
-
-            function getUnicode(charCode) {
-
-                return charCode.charCodeAt(0).toString(16);
-
-            }
-
-            function getSixCode(charCode) {
-
-                return parseInt(charCode.charCodeAt(0), 16).toString(6);
-
-            }
-
-            function PrefixInteger(s, len) {
-
-                return (Array(len).join("0") + s).slice(-len);
-
-            }
-
-            window.onload = function () {
-
-                var plaintext = document.getElementById("plaintext");
-
-                var ciphetext = document.getElementById("ciphetext");
-
-                document.getElementById("encode-btn").onclick = function () {
-
-                    let text = plaintext.value;
-
-                    plaintext.value = "";
-
-                    ciphetext.value = "必";
-
-                    for (let char of text) {
-
-                        const charUniSix = PrefixInteger(getSixCode(char), 7);
-
-                        let encodeChar = "";
-
-                        for (let c of charUniSix) {
-
-                            encodeChar += encodeDic[c];
-
-                        }
-
-                        ciphetext.value += encodeChar;
-
-                    }
-
-                    ciphetext.value += "胜";
-
-                };
-
-                document.getElementById("decode-btn").onclick = function () {
-
-                    const text = ciphetext.value.slice(1, ciphetext.value.length - 1);
-
-                    len = Math.floor(text.length / 7);
-
-                    let decode = "";
-
-                    for (let i = 0; i < len; i++) {
-
-                        const encodeChar = text.substring(i * 7, i * 7 + 7);
-
-                        let charUniSix = "";
-
-                        for (let char of encodeChar) {
-
-                            charUniSix += decodeDic[char];
-
-                        }
-
-                        decode += String.fromCharCode(parseInt(charUniSix, 6).toString(16));
-
-                    }
-
-                    plaintext.value = decode;
-
-                    ciphetext.value = "";
-
-                };
-
-                document.getElementById("copy-btn").onclick = function () {
-
-                    const input = document.createElement("input");
-
-                    input.value = ciphetext.value;
-
-                    input.style = "height:0px;width=0px;";
-
-                    document.body.appendChild(input);
-
-                    input.select();
-
-                    input.setSelectionRange(0, input.value.length);
-
-                    document.execCommand("Copy");
-
-                    document.body.removeChild(input);
-
-                };
-
-            };
-
-        </script>
-
-    </head>
-
-    <body>
-
-        <div class="line-box">
-
-            <input id="plaintext" type="text" placeholder="请输入要加密的文字" />
-
-        </div>
-
-        <div class="line-box">
-
-            <input id="ciphetext" type="text" placeholder="请输入要解密的文字" />
-
-        </div>
-
-        <div class="line-box">
-
-            <button id="encode-btn">加密</button>
-
-            <button id="decode-btn">解密</button>
-
-            <button id="copy-btn">复制密文</button>
-
-        </div>
-        <div class="line-box" style="font-size: 25pt;">
-
-            临时制作，页面尚不完善，如有疑问联系制作人刘桐序
-
-        </div>
-
-    </body>
-
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>敢打必胜</title>
+	<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+	<style type="text/css">
+
+		
+		.form-bg{
+		    padding: 2em 0;
+		}
+		.form-horizontal{
+		    background: #fff;
+		    padding-bottom: 40px;
+		    border-radius: 15px;
+		    text-align: center;
+		}
+		.form-horizontal .heading{
+		    display: block;
+		    font-size: 35px;
+		    font-weight: 700;
+		    padding: 35px 0;
+		    border-bottom: 1px solid #f0f0f0;
+		    margin-bottom: 30px;
+		}
+		.form-horizontal .form-group{
+		    padding: 0 40px;
+		    margin: 0 0 25px 0;
+		    position: relative;
+		}
+		.form-horizontal .form-control{
+		    background: #f0f0f0;
+		    border: none;
+		    border-radius: 20px;
+		    box-shadow: none;
+		    padding: 0 20px 0 20px;
+		    height: 40px;
+		    transition: all 0.3s ease 0s;
+		}
+		.form-horizontal .form-control:focus{
+		    background: #e0e0e0;
+		    box-shadow: none;
+		    outline: 0 none;
+		}
+		.form-horizontal .form-group i{
+		    position: absolute;
+		    top: 12px;
+		    left: 60px;
+		    font-size: 17px;
+		    color: #c8c8c8;
+		    transition : all 0.5s ease 0s;
+		}
+		.form-horizontal .form-control:focus + i{
+		    color: #00b4ef;
+		}
+		.form-horizontal .fa-question-circle{
+		    display: inline-block;
+		    position: absolute;
+		    top: 12px;
+		    right: 60px;
+		    font-size: 20px;
+		    color: #808080;
+		    transition: all 0.5s ease 0s;
+		}
+		.form-horizontal .fa-question-circle:hover{
+		    color: #000;
+		}
+		.form-horizontal .main-checkbox{
+		    float: left;
+		    width: 20px;
+		    height: 20px;
+		    background: #11a3fc;
+		    border-radius: 50%;
+		    position: relative;
+		    margin: 5px 0 0 5px;
+		    border: 1px solid #11a3fc;
+		}
+		.form-horizontal .main-checkbox label{
+		    width: 20px;
+		    height: 20px;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    cursor: pointer;
+		}
+		.form-horizontal .main-checkbox label:after{
+		    content: "";
+		    width: 10px;
+		    height: 5px;
+		    position: absolute;
+		    top: 5px;
+		    left: 4px;
+		    border: 3px solid #fff;
+		    border-top: none;
+		    border-right: none;
+		    background: transparent;
+		    opacity: 0;
+		    -webkit-transform: rotate(-45deg);
+		    transform: rotate(-45deg);
+		}
+		.form-horizontal .main-checkbox input[type=checkbox]{
+		    visibility: hidden;
+		}
+		.form-horizontal .main-checkbox input[type=checkbox]:checked + label:after{
+		    opacity: 1;
+		}
+		.form-horizontal .text{
+		    float: left;
+		    margin-left: 7px;
+		    line-height: 20px;
+		    padding-top: 5px;
+		    text-transform: capitalize;
+		}
+		.form-horizontal .btn{
+		    font-size: 14px;
+		    color: #fff;
+		    background: #00b4ef;
+		    border-radius: 30px;
+		    padding: 10px 25px;
+		    border: none;
+		    text-transform: capitalize;
+		    transition: all 0.5s ease 0s;
+		}
+		@media only screen and (max-width: 479px){
+		    .form-horizontal .form-group{
+		        padding: 0 25px;
+		    }
+		    .form-horizontal .form-group i{
+		        left: 45px;
+		    }
+		    .form-horizontal .btn{
+		        padding: 10px 20px;
+		    }
+		}
+	</style>
+	        <script>
+
+				const decodeDic = {
+	
+					"\u200B": "0",
+	
+					"\uFEFF": "1",
+	
+					"\u200D": "2",
+	
+					"\u200C": "3",
+	
+					"\u200E": "4",
+	
+					"\u200F": "5",
+	
+				};
+	
+				const encodeDic = {
+	
+					0: "\u200B",
+	
+					1: "\uFEFF",
+	
+					2: "\u200D",
+	
+					3: "\u200C",
+	
+					4: "\u200E",
+	
+					5: "\u200F",
+	
+				};
+	
+				function getUnicode(charCode) {
+	
+					return charCode.charCodeAt(0).toString(16);
+	
+				}
+	
+				function getSixCode(charCode) {
+	
+					return parseInt(charCode.charCodeAt(0), 16).toString(6);
+	
+				}
+	
+				function PrefixInteger(s, len) {
+	
+					return (Array(len).join("0") + s).slice(-len);
+	
+				}
+	
+				window.onload = function () {
+	
+					var plaintext = document.getElementById("plaintext");
+	
+					var ciphetext = document.getElementById("ciphetext");
+	
+					document.getElementById("encode-btn").onclick = function () {
+	
+						let text = plaintext.value;
+	
+						plaintext.value = "";
+	
+						ciphetext.value = "必";
+	
+						for (let char of text) {
+	
+							const charUniSix = PrefixInteger(getSixCode(char), 7);
+	
+							let encodeChar = "";
+	
+							for (let c of charUniSix) {
+	
+								encodeChar += encodeDic[c];
+	
+							}
+	
+							ciphetext.value += encodeChar;
+	
+						}
+	
+						ciphetext.value += "胜";
+	
+					};
+	
+					document.getElementById("decode-btn").onclick = function () {
+	
+						const text = ciphetext.value.slice(1, ciphetext.value.length - 1);
+	
+						len = Math.floor(text.length / 7);
+	
+						let decode = "";
+	
+						for (let i = 0; i < len; i++) {
+	
+							const encodeChar = text.substring(i * 7, i * 7 + 7);
+	
+							let charUniSix = "";
+	
+							for (let char of encodeChar) {
+	
+								charUniSix += decodeDic[char];
+	
+							}
+	
+							decode += String.fromCharCode(parseInt(charUniSix, 6).toString(16));
+	
+						}
+	
+						plaintext.value = decode;
+	
+						ciphetext.value = "";
+	
+					};
+	
+					document.getElementById("copy-btn").onclick = function () {
+	
+						const input = document.createElement("input");
+	
+						input.value = ciphetext.value;
+	
+						input.style = "height:0px;width=0px;";
+	
+						document.body.appendChild(input);
+	
+						input.select();
+	
+						input.setSelectionRange(0, input.value.length);
+	
+						document.execCommand("Copy");
+	
+						document.body.removeChild(input);
+	
+					};
+	
+				};
+	
+			</script>
+</head>
+<body>
+	<div class="htmleaf-container">
+
+		<div class="demo form-bg">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md-offset-3 col-md-6">
+	                    <form class="form-horizontal">
+	                        <span class="heading">敢打必胜</span>
+	                        <div class="form-group">
+	                            <input type="text" class="form-control" id="plaintext" placeholder="请输入要加密的文字">
+	                        </div>
+	                        <div class="form-group help">
+	                            <input type="text" class="form-control" id="ciphetext" placeholder="请输入要解密的文字">
+	                        </div>
+	                        <div class="form-group">
+	                            <button type="submit" class="btn btn-default" id="encode-btn">加密</button>
+								<button type="submit" class="btn btn-default" id="decode-btn">解密</button>
+								<button type="submit" class="btn btn-default" id="copy-btn">复制密文</button>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+		<div class="related">
+		    <h4>尚未完善，如有疑问请联系制作人刘桐序</h4>
+		</div>
+	</div>
+
+</body>
 </html>
-
