@@ -1,13 +1,13 @@
 function bin2Waibi(num) {
   switch (num) {
     case 0b00:
-      return '敢';
+      return '.';
     case 0b01:
-      return '打';
+      return '!';
     case 0b10:
-      return '必';
+      return '`';
     case 0b11:
-      return '胜';
+      return ':';
     default:
       return null;
   }
@@ -16,13 +16,13 @@ function bin2Waibi(num) {
 
 function waibi2Bin(waibi) {
   switch (waibi) {
-    case '敢':
+    case '.':
       return 0b00;
-    case '打':
+    case '!':
       return 0b01;
-    case '必':
+    case '`':
       return 0b10;
-    case '胜':
+    case ':':
       return 0b11;
     default:
       return null;
@@ -72,7 +72,7 @@ function waibiDecode(waibiText) {
     for (let waibi of waibiText) {
       let a = waibi2Bin(waibi);
       if (a == null) {
-        throw Error('密文中只允许出现"敢打必胜"四个字');
+        throw Error('密文输入不正确');
       }
       temp += a << move;
       move -= 2;
