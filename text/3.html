@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <style>
+
+            html {
+
+                height: 100%;
+
+            }
+
+            body {
+
+                margin: 0px;
+
+                height: 100%;
+
+                display: flex;
+
+                flex-flow: column nowrap;
+
+                justify-content: center;
+
+                align-items: center;
+
+            }
+
+            .line-box {
+
+                display: flex;
+
+                flex-flow: row nowrap;
+
+                justify-content: center;
+
+                align-items: center;
+
+                margin-bottom: 60px;
+
+            }
+
+            input {
+
+                outline: none;
+
+                border: 0px;
+
+                border-bottom: 1px solid #e5e5e5;
+
+                height: 100px;
+
+                width: 800px;
+
+                font-size: 25pt;
+
+            }
+
+            input::placeholder {
+
+                color: #c5c5d5;
+
+            }
+
+            button {
+
+                outline: none;
+
+                height: 100pt;
+
+                width: 200pt;
+
+                border: 0px;
+
+                margin: 0pt 20pt 0pt 20pt;
+
+                border-radius: 3pt;
+
+                cursor: pointer;
+                
+                font-size: 25pt;
+
+            }
+
+            button:hover {
+
+                background-color: black;
+
+                color: white;
+
+            }
+
+        </style>
+
+        <script>
+
+            const decodeDic = {
+
+                "\u200B": "0",
+
+                "\uFEFF": "1",
+
+                "\u200D": "2",
+
+                "\u200C": "3",
+
+                "\u200E": "4",
+
+                "\u200F": "5",
+
+            };
+
+            const encodeDic = {
+
+                0: "\u200B",
+
+                1: "\uFEFF",
+
+                2: "\u200D",
+
+                3: "\u200C",
+
+                4: "\u200E",
+
+                5: "\u200F",
+
+            };
+
+            function getUnicode(charCode) {
+
+                return charCode.charCodeAt(0).toString(16);
+
+            }
+
+            function getSixCode(charCode) {
+
+                return parseInt(charCode.charCodeAt(0), 16).toString(6);
+
+            }
+
+            function PrefixInteger(s, len) {
+
+                return (Array(len).join("0") + s).slice(-len);
+
+            }
+
+            window.onload = function () {
+
+                var plaintext = document.getElementById("plaintext");
+
+                var ciphetext = document.getElementById("ciphetext");
+
+                document.getElementById("encode-btn").onclick = function () {
+
+                    let text = plaintext.value;
+
+                    plaintext.value = "";
+
+                    ciphetext.value = "https://hiltx.gitee.io/text/3.html";
+
+                    for (let char of text) {
+
+                        const charUniSix = PrefixInteger(getSixCode(char), 7);
+
+                        let encodeChar = "";
+
+                        for (let c of charUniSix) {
+
+                            encodeChar += encodeDic[c];
+
+                        }
+
+                        ciphetext.value += encodeChar;
+
+                    }
+
+                    ciphetext.value += ".";
+
+                };
+
+                document.getElementById("decode-btn").onclick = function () {
+
+                    const text = ciphetext.value.slice(1, ciphetext.value.length - 1);
+
+                    len = Math.floor(text.length / 7);
+
+                    let decode = "";
+
+                    for (let i = 0; i < len; i++) {
+
+                        const encodeChar = text.substring(i * 7, i * 7 + 7);
+
+                        let charUniSix = "";
+
+                        for (let char of encodeChar) {
+
+                            charUniSix += decodeDic[char];
+
+                        }
+
+                        decode += String.fromCharCode(parseInt(charUniSix, 6).toString(16));
+
+                    }
+
+                    plaintext.value = decode;
+
+                    ciphetext.value = "";
+
+                };
+
+                document.getElementById("copy-btn").onclick = function () {
+
+                    const input = document.createElement("input");
+
+                    input.value = ciphetext.value;
+
+                    input.style = "height:0px;width=0px;";
+
+                    document.body.appendChild(input);
+
+                    input.select();
+
+                    input.setSelectionRange(0, input.value.length);
+
+                    document.execCommand("Copy");
+
+                    document.body.removeChild(input);
+
+                };
+
+            };
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <div class="line-box">
+
+            <input id="plaintext" type="text" placeholder="请输入要加密的文字" />
+
+        </div>
+
+        <div class="line-box">
+
+            <input id="ciphetext" type="text" placeholder="请输入要解密的文字" />
+
+        </div>
+
+        <div class="line-box">
+
+            <button id="encode-btn">加密</button>
+
+            <button id="decode-btn">解密</button>
+
+            <button id="copy-btn">复制密文</button>
+
+        </div>
+        <div class="line-box" style="font-size: 25pt;">
+
+            临时制作，页面尚不完善，如有疑问联系制作人刘桐序
+
+        </div>
+
+    </body>
+
+</html>
+
