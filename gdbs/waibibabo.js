@@ -3,7 +3,7 @@ function bin2Waibi(num) {
     case 0b00:
       return '.';
     case 0b01:
-      return '!';
+      return ';';
     case 0b10:
       return '`';
     case 0b11:
@@ -18,7 +18,7 @@ function waibi2Bin(waibi) {
   switch (waibi) {
     case '.':
       return 0b00;
-    case '!':
+    case ';':
       return 0b01;
     case '`':
       return 0b10;
