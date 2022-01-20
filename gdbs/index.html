@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>敢打必胜</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcdn.net/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="waibibabo.js"></script>
+  <style>
+    #app {
+      position: relative;
+    }
+    #app > .page {
+      min-height: 100vh;
+    }
+    .translate {
+      background-color: #3399CC;
+      padding: 0 100px;
+      position: relative;
+    }
+    .translate .content {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+    }
+    .translate .content > div {
+      color: white;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .control {
+
+    }
+    .control button {
+      margin: 5px;
+    }
+    .input {
+      width: 40%;
+    }
+    .header1 {
+      text-align: center;
+
+      width: 100%;
+      color: white;
+      font-size: 30px;
+    }
+    .header1 a {
+      color: white;
+    }
+    .copyright {
+      bottom: 10px;
+      right: 10px;
+      text-align: center;
+    }
+    .copyright a {
+      color: #00ffb7;
+    }
+    .spec {
+      padding: 50px 50px;
+    }
+    .spec article {
+      margin: auto;
+      max-width: 700px;
+    }
+    @media screen and (max-width: 768px) {
+      .translate {
+        padding: 0 20px 30px 20px;
+      }
+      .translate .content {
+        flex-direction: column;
+      }
+      .input {
+        width: 100%;
+      }
+      .spec {
+        padding: 50px 20px;
+      }
+    }
+    .related {
+			text-align: center;
+		}
+  </style>
+
+
+
+
+<script>
+  
+	function copyText()  {
+
+var plaintext = document.getElementById("text");
+
+var ciphetext = document.getElementById("waibi");
+
+
+document.getElementById("copy-btn").onclick = function () {
+
+  const input = document.createElement("textarea");
+
+  input.value = ciphetext.value;
+
+  input.style = "height:0px;width=0px;";
+
+  document.body.appendChild(input);
+
+  input.select();
+
+  input.setSelectionRange(0, input.value.length);
+
+  document.execCommand("Copy");
+
+  document.body.removeChild(input);
+
+  document.execCommand("copy"); // 执行浏览器复制命令
+
+alert("复制密文成功");
+
+};
+
+};
+</script>
+</head>
+<body>
+<div id="app">
+  <div class="page translate">
+    <div class="header1">
+
+        <span>敢打必胜</span>
+
+    </div>
+    <div class="content">
+      <div class="form-group input">
+        <label for="text">明文</label>
+        <textarea id="text" class="form-control" placeholder="请在此处输入明文" rows="10"></textarea>
+      </div>
+      <div class="form-group control">
+        <button id="btn-encode" class="btn btn-warning">明文 => 密文</button>
+        <button id="btn-decode" class="btn btn-warning">明文 <= 密文</button>
+        <button id="copy-btn" class="btn btn-danger" onclick="copyText()">复制密文</button>
+      </div>
+      <div class="form-group input">
+        <label for="waibi">密文</label>
+        <textarea id="waibi" class="form-control" placeholder="请在此处输入密文" rows="10"></textarea>
+      </div>
+      <div class="copyright">
+        <span class="related">算法由<a href="https://hiltx.gitee.io/" target="_blank">刘桐序</a>制作 尚未完善 有疑问请联系</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
