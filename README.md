@@ -1,4 +1,4 @@
-# 所长导航
+# liyud的书签导航
 # https://liutongxu.github.io/  您做好的网站如使用此代码可给个友情链接，谢谢！
 
 # 使用说明
@@ -10,7 +10,5 @@
 
 源码要感谢GitHub的webstack开源项目及一为导航，我是在它们的源码基础上本地静态化修改而来。
 
-
-所长导航liutongxu.github.io
 
 支持请给个Star
